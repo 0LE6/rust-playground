@@ -1,10 +1,21 @@
 // 48: When to panic! vs. when to use Result in Rust
 
+// --- 4th part ---
+
+
+/*
 // --- 3rd part ---
 fn main() {
-    
+    match call_api() {
+        Ok(response) => println!("API response {}", response),
+        Err(e) => println!("Error {}", e)
+    } 
 }
 
+fn call_api() -> Result<String, String> {
+    Err("API limit reached!".to_string())
+}
+*/
 /*
 //--- 2nd part ---
 use std::net::IpAddr;
