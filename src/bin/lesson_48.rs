@@ -1,5 +1,23 @@
 // 48: When to panic! vs. when to use Result in Rust
 
+// --- 3rd part ---
+fn main() {
+    
+}
+
+/*
+//--- 2nd part ---
+use std::net::IpAddr;
+
+fn main() {
+    let home: IpAddr = "helloooooooooooooo"
+        .parse()
+        .expect("Hardcoded IP is invalid!");
+
+    dbg!(home);
+}
+*/
+
 /*
 // --- 1st part ---
 fn main() {
@@ -17,21 +35,3 @@ fn get_first_char(string: &str) -> char {
     string.chars().next().unwrap()
 }
 */
-
-/*
-//--- 2nd part ---
-use std::net::IpAddr;
-
-fn main() {
-    let home: IpAddr = "helloooooooooooooo"
-        .parse()
-        .expect("Hardcoded IP is invalid!");
-
-    dbg!(home);
-}
-*/
-
-// --- 3rd part ---
-fn main() {
-
-}
