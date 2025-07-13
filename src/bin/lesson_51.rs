@@ -1,5 +1,7 @@
 // 51: Vectors are awesome in Rust
 
+use std::f64::consts::PI;
+
 fn main() {
     // 1) start example
     // let v:Vec<i32> = Vec::new();
@@ -66,5 +68,18 @@ fn main() {
     //
     // println!("let mut nums -> {:?}", nums);
 
-
+    // Last example
+    let mut values = vec!{Value::Float(PI), Value::Int(42)};
+    values.push(Value::Text(String::from("Rusty")));
+   
+    println!("values -> {:?}", values);
 }
+
+// better be on the top, but anyways (for last example)
+#[derive(Debug)]
+enum Value {
+    Int(i32),
+    Float(f64),
+    Text(String),
+}
+
