@@ -55,9 +55,16 @@ fn main() {
 
     // ref of a ref in a for
     // let ppl = vec!["Rusty", "Pepe", "Ferris"];
-    // for p in ppl {
+    // for p in &ppl {
     //     println!("{p}");
     // }
+
+    // let mut nums = vec![1, 2, 3];
+    // for n in &mut nums {
+    //     *n += 10;
+    // }
+    //
+    // println!("let mut nums -> {:?}", nums);
 
 
 }
