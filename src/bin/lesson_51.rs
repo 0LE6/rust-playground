@@ -23,5 +23,23 @@ fn main() {
     // print!("v={:?} \n", numbers); 
 
     // 4) referece example
+    let mut numbers = vec![1, 2, 3];
+    // numbers.push(4);
+
+    let second = numbers[1];
+    dbg!(second);
+    // dbg!(&numbers);
+
+    let third: &i32 = &numbers[2];
+    dbg!(third);
+  
+    // if we pop the 3rd number it'll lead us to the None (_) 
+    // otherwise it'll show uis the 3rd number
+    numbers.pop();
+    let third: Option<&i32> = numbers.get(2);
+    match third {
+        Some(third) => println!("The 3rd number -> {third}"),
+        _ => println!("There's no 3rd element'"),
+    }
 
 }
