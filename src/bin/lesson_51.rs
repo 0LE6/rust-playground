@@ -23,23 +23,41 @@ fn main() {
     // print!("v={:?} \n", numbers); 
 
     // 4) referece example
-    let mut numbers = vec![1, 2, 3];
+    // let mut numbers = vec![1, 2, 3];
     // numbers.push(4);
 
-    let second = numbers[1];
-    dbg!(second);
+    // let second = numbers[1];
+    // dbg!(second);
     // dbg!(&numbers);
 
-    let third: &i32 = &numbers[2];
-    dbg!(third);
+    // let third: &i32 = &numbers[2];
+    // dbg!(third);
   
-    // if we pop the 3rd number it'll lead us to the None (_) 
+    // if we pop the 3rd number it'll lead us to the None
     // otherwise it'll show uis the 3rd number
-    numbers.pop();
-    let third: Option<&i32> = numbers.get(2);
-    match third {
-        Some(third) => println!("The 3rd number -> {third}"),
-        _ => println!("There's no 3rd element'"),
-    }
+    // numbers.pop();
+    // let third: Option<&i32> = numbers.get(2);
+    // match third {
+        // Some(third) => println!("The 3rd number -> {third}"),
+        // None => println!("There's no 3rd element'"),
+    // }
+
+
+    // let chars = vec!["Rusty", "Ferris"];
+    // let pepe = chars.get(10);
+    // dbg!(pepe); // it'll return None
+
+    // let mut ns = vec![1, 2, 3, 4, 5];
+    // ns.push(6); // like this we can 
+    // let first = &ns[0]; // inmutable borrow
+    // ns.push(6); // cannot fter the previous borrow 
+    // println!("the 1st element -> {first}");
+
+    // ref of a ref in a for
+    // let ppl = vec!["Rusty", "Pepe", "Ferris"];
+    // for p in ppl {
+    //     println!("{p}");
+    // }
+
 
 }
