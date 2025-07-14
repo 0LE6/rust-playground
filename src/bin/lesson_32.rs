@@ -23,11 +23,16 @@ fn main() {
     // string.clea(); // clean as the let is mut
     
     // Example with &str
-    let sentence = String::from("Rusty Rust!");
-    let sentence2 = "Blazingly fast!";
-
-    let word = get_first_word(&sentence);
-    let word2 = get_first_word(sentence2);
+    // let sentence = String::from("Rusty Rust!");
+    // let sentence2 = "Blazingly fast!";
+    //
+    // let word = get_first_word(&sentence);
+    // let word2 = get_first_word(sentence2);
+    
+    // Exampel with Arrays
+    let arr = [1, 2, 3, 4, 5];
+    let slice = &arr[2..];
+    dbg!(slice);
         
 }
 
