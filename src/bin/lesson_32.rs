@@ -16,11 +16,23 @@ fn main() {
     // dbg!(&name[..5]); // now we have full José string part
     // ------------------------------------------------------------
 
-        
+    // Example with String
+    // let mut string = String::from("Holy wacamole!");
+    // let first = get_first_word(&string);
+    // dbg!(first);
+    // string.clea(); // clean as the let is mut
+    
+    // Example with &str
+    let sentence = String::from("Rusty Rust!");
+    let sentence2 = "Blazingly fast!";
 
+    let word = get_first_word(&sentence);
+    let word2 = get_first_word(sentence2);
+        
 }
 
-fn get_first_word(sentence: &String) -> &str {
+fn get_first_word(sentence: &str) -> &str {
+// fn get_first_word(sentence: &String) -> &str {
     let bytes = sentence.as_bytes();
 
     for (i, &item) in bytes.iter().enumerate() {
