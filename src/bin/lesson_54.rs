@@ -18,10 +18,18 @@ fn main() {
     // println!("unicode_scalars = {:?}", unicode_scalars);
     
     // 4)
-    let cluster = Vec::from(["न", "म", "स्","ते"]);
-    println!("cluster = {:?}", cluster); 
+    // let cluster = Vec::from(["न", "म", "स्","ते"]);
+    // println!("cluster = {:?}", cluster); 
     // cluster = ["न", "म", "स\u{94d}", "त\u{947}"]
     
-    
+    // 5) - slicin
+    let greeting = String::from("Holá");
+
+    // byte index 4 is not a char boundary; 
+    // it is inside 'á' (bytes 3..5) of `Holá`
+    // let s = &greeting[3..4];
+
+    let s = &greeting[3..5]; // 'á' 
+    dbg!(s);
 
 }
