@@ -23,13 +23,24 @@ fn main() {
     // cluster = ["न", "म", "स\u{94d}", "त\u{947}"]
     
     // 5) - slicin
-    let greeting = String::from("Holá");
+    // let greeting = String::from("Holá");
 
     // byte index 4 is not a char boundary; 
     // it is inside 'á' (bytes 3..5) of `Holá`
     // let s = &greeting[3..4];
 
-    let s = &greeting[3..5]; // 'á' 
-    dbg!(s);
+    // let s = &greeting[3..5]; // 'á' 
+    // dbg!(s);
 
+    // 6) 
+    let word = "ラーメン";
+   
+    // you  must iterate over chars or bytes
+    for c in word.chars() {
+        dbg!(c);
+    }
+
+    for c in word.bytes() {
+        dbg!(c);
+    }
 }
