@@ -13,9 +13,15 @@ fn main() {
     // dbg!(spec_len);
 
     // 3)
-    let greeting = String::from("привет");
-    let unicode_scalars: Vec<char> = greeting.chars().collect();
-    println!("unicode_scalars = {:?}", unicode_scalars);
-
+    // let greeting = String::from("привет");
+    // let unicode_scalars: Vec<char> = greeting.chars().collect();
+    // println!("unicode_scalars = {:?}", unicode_scalars);
+    
+    // 4)
+    let cluster = Vec::from(["न", "म", "स्","ते"]);
+    println!("cluster = {:?}", cluster); 
+    // cluster = ["न", "म", "स\u{94d}", "त\u{947}"]
+    
+    
 
 }
