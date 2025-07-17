@@ -1,16 +1,21 @@
 // 54: Indexing strings in Rust
 
 fn main() {
-    let greeting = String::from("Hola"); // vect storing str of 4 bytes
-    let len = greeting.len(); // return len in bytes
-    dbg!(len);
+    // 1)
+    // let greeting = String::from("Hola"); // vec stors str of 4 bytes
+    // let len = greeting.len(); // return len in bytes
+    // dbg!(len);
 
+    // 2)
     // if it contains special chars
-    let spec = String::from("Holá");
-    let spec_len = spec.len(); // 5 bytes
-    dbg!(spec_len);
+    // let spec = String::from("Holá");
+    // let spec_len = spec.len(); // 5 bytes
+    // dbg!(spec_len);
 
-
+    // 3)
+    let greeting = String::from("привет");
+    let unicode_scalars: Vec<char> = greeting.chars().collect();
+    println!("unicode_scalars = {:?}", unicode_scalars);
 
 
 }
