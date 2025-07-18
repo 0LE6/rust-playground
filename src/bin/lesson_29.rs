@@ -15,15 +15,27 @@ fn main() {
     // dbg!(r1, r2); 
     
     // this will
-    let r1 = &text;
-    let r2 = &text;
-    dbg!(r1, r2);
+    // let r1 = &text;
+    // let r2 = &text;
+    // dbg!(r1, r2);
+    //
+    // let r3 = &mut text;
+    // dbg!(r3);
 
-    let r3 = &mut text;
-    dbg!(r3);
+    // 3)
+    // let mut x = 10;
+    // let y = &mut x;
+    // x += 3;
+    // // dbg!(y); //cannot use x cause it was mutably borrowed
+    
+   
+    // correct representation of last example
+    let mut x = 10;
+    let y = &mut x;     // ← mutable borrow of `x`
+    dbg!(y);            // ← using `y`, borrow ends after this line
 
-
-
+    x += 3;             // ← OK: mutable borrow is over
+    dbg!(x);            // ← now `x` is accessible again
 }
 
 // 1)
