@@ -1,13 +1,19 @@
 // 27: Ownership in Rust
 
 fn main() {
-    
-    // 3)
-    let s1 = create_string();
-    let s2 = create_string();
-    let s3 = process_string(s1);
+   
+    // 4)
+    let txt = String::from("Frosty");
+    let (txt, len) = total_chars(txt);
 
-    dbg!(s3); 
+    println!("{txt} has length of {len}");
+
+    // 3)
+    // let s1 = create_string();
+    // let s2 = create_string();
+    // let s3 = process_string(s1);
+    //
+    // dbg!(s3); 
 
     // 2)
     // let s1 = create_string();
@@ -23,15 +29,22 @@ fn main() {
     // println!("Second attempt to use number: {n}"); // this will work 'cause i32 uses copy trait
 }
 
-// 3)
-fn process_string(txt: String) -> String {
-    txt.to_uppercase()
+// 4)
+fn total_chars(txt: String) -> (String, usize) {
+    let len = txt.chars().count();
+    (txt, len)
 }
 
+
+// 3)
+// fn process_string(txt: String) -> String {
+//     txt.to_uppercase()
+// }
+
 // 2)
-fn create_string() -> String {
-    String::from("Rusty") 
-}
+// fn create_string() -> String {
+//     String::from("Rusty") 
+// }
 
 // 1)
 // fn greet(name: String) {
