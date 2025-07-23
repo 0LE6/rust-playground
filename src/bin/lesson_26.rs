@@ -23,7 +23,9 @@ fn main() {
     let n: i32 = 69;
     let n2 = n;
 
-    // this works fine 'cause small types as Integres, Booleans... 
+    // this works fine 'cause small types as 
+    // Integers, Booleans, Floats, Chars, Tuples
+    // (if contains some of mentioned ones) ... 
     // implements the Copy trait inside
     dbg!(n, n2);
 
