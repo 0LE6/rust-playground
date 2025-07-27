@@ -7,6 +7,12 @@ fn main() {
     items.insert(String::from("Cup"), 10);
     dbg!(&items);
 
-    items.insert(String::from("Cup"), 25);
-    dbg!(&items);
+    // items.insert(String::from("Cup"), 25);
+    // dbg!(&items);
+    
+    // if key doens't exist
+    // entry + or_insert
+    items.entry(String::from("Cup")).or_insert(20); // returns mut ref to value of Cup (10)
+    items.entry(String::from("Spoon")).or_insert(20);
+    dbg!(items);
 }
