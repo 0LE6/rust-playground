@@ -12,7 +12,18 @@ fn main() {
     
     // if key doens't exist
     // entry + or_insert
-    items.entry(String::from("Cup")).or_insert(20); // returns mut ref to value of Cup (10)
-    items.entry(String::from("Spoon")).or_insert(20);
-    dbg!(items);
+    // items.entry(String::from("Cup")).or_insert(20); // returns mut ref to value of Cup (10)
+    // items.entry(String::from("Spoon")).or_insert(20);
+    // dbg!(items);
+
+    let txt = "Let's get Rusty with Rusty so let's get it";
+    let mut map = HashMap::new();
+
+    for word in txt.split_whitespace()  {
+        let count = map.entry(word.to_lowercase()).or_insert(0);
+        *count += 1
+    }
+
+    dbg!(map);
+
 }
