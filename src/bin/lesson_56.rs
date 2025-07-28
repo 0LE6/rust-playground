@@ -5,7 +5,8 @@ use std::collections::HashMap;
 fn main() {
     let mut items: HashMap<String, i32> = HashMap::new();
     items.insert(String::from("Cup"), 10);
-    dbg!(&items);
+    let i = items.entry("Cane".to_string()).or_insert(68);
+    dbg!(&items); // Cane: 69, Cup: 10
 
     // items.insert(String::from("Cup"), 25);
     // dbg!(&items);
