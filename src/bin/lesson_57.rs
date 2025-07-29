@@ -25,11 +25,13 @@ fn main() {
 
     // 4) - remove
     let mut nums = HashSet::from([1, 2, 3, 4, 4, 3, 5]);
-    dbg!(&nums);
-    dbg!(nums.remove(&5)); // true
+    // dbg!(&nums);
+    // dbg!(nums.remove(&5)); // true
+    //
+    // let there_is: bool = nums.remove(&5); // false 'cause we already removed it
+    //
+    // dbg!(&nums, there_is);
 
-    let there_is: bool = nums.remove(&5); // false
-
-    dbg!(&nums, there_is);
-
+    // 5) - length and is empty
+    dbg!(nums.len(), nums.is_empty()); 
 }
