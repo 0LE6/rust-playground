@@ -1,6 +1,6 @@
 // 57: Hash set in Rust
 
-use std::collections::HashSet;
+use std::{collections::HashSet, i32};
 
 fn main() {
     // 1)
@@ -48,9 +48,31 @@ fn main() {
     // dbg!(&nums); // and nums is empty
     
     // 8) - iteration
-    let users = HashSet::from(["Rusty", "Frosty", "Pepe"]);
+    // let users = HashSet::from(["Rusty", "Frosty", "Pepe"]);
+    //
+    // for user in users {
+    //     println!("Hello {user}!");
+    // }
 
-    for user in users {
-        println!("Hello {user}!");
-    }
+    // 9)
+    let hs1 = HashSet::from([1, 2, 3]);
+    let hs2 = HashSet::from([2, 3, 4]);
+
+    // let result: HashSet<&i32> = hs1.union(&hs2).collect();
+    // dbg!(&result);
+    
+    // intersection
+    // let result: HashSet<&i32> = hs1.intersection(&hs2).collect(); // repeated in both
+    // dbg!(&result);
+    
+    // difference
+    // let result: HashSet<&i32> = hs1.difference(&hs2).collect(); // values in hs1 not in hs2 
+    // dbg!(&result);
+
+    // symmetric_difference
+    let result: HashSet<&i32> = hs1.symmetric_difference(&hs2).collect(); 
+    // values in either hs1 or hs2, but not both (truly unique elements, 1 and 4) 
+    dbg!(&result);
+
+
 }
