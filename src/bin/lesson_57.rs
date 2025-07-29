@@ -33,5 +33,12 @@ fn main() {
     // dbg!(&nums, there_is);
 
     // 5) - length and is empty
-    dbg!(nums.len(), nums.is_empty()); 
+    dbg!(nums.len(), nums.is_empty());
+
+    // 6) - clear
+    nums.clear();
+    dbg!(&nums);
+
+    nums.extend([1, 2, 3]); // other way of populate the Set
+    dbg!(nums);
 }
