@@ -26,6 +26,10 @@ fn main() {
     // 4) - remove
     let mut nums = HashSet::from([1, 2, 3, 4, 4, 3, 5]);
     dbg!(&nums);
-    dbg!(nums.remove(&5));
-    dbg!(&nums);
+    dbg!(nums.remove(&5)); // true
+
+    let there_is: bool = nums.remove(&5); // false
+
+    dbg!(&nums, there_is);
+
 }
