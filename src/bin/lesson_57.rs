@@ -19,8 +19,13 @@ fn main() {
     // dbg!(nums, hashed_vec);
 
     // 3) - contains
+    // let mut nums = HashSet::from([1, 2, 3, 4, 4, 3, 5]);
+    // dbg!(&nums);
+    // dbg!(nums.contains(&69)); // false
+
+    // 4) - remove
     let mut nums = HashSet::from([1, 2, 3, 4, 4, 3, 5]);
     dbg!(&nums);
-    dbg!(nums.contains(&69)); // false
-
+    dbg!(nums.remove(&5));
+    dbg!(&nums);
 }
