@@ -11,11 +11,16 @@ fn main() {
     // dbg!(nums);
 
     // 2)
-    let mut nums = HashSet::from([10, 20, 10]);
-    let vec = vec![1, 2, 3, 4, 4, 3, 5];
-    // convert Vec to HasSet
-    let mut hashed_vec: HashSet<i32> = vec.into_iter().collect();
-    
-    dbg!(nums, hashed_vec);
+    // let mut nums = HashSet::from([10, 20, 10]);
+    // let vec = vec![1, 2, 3, 4, 4, 3, 5];
+    // // convert Vec to HasSet
+    // let hashed_vec: HashSet<_> = vec.into_iter().collect();
+    // 
+    // dbg!(nums, hashed_vec);
+
+    // 3) - contains
+    let mut nums = HashSet::from([1, 2, 3, 4, 4, 3, 5]);
+    dbg!(&nums);
+    dbg!(nums.contains(&69)); // false
 
 }
