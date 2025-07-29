@@ -40,5 +40,10 @@ fn main() {
     dbg!(&nums);
 
     nums.extend([1, 2, 3]); // other way of populate the Set
-    dbg!(nums);
+    dbg!(&nums);
+
+    // 7) - drain
+    let drained: Vec<i32> = nums.drain().collect();
+    dbg!(drained); // now drained contains 1 2 3 from nums
+    dbg!(&nums); // and nums is empty
 }
