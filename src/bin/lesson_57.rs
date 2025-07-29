@@ -24,7 +24,7 @@ fn main() {
     // dbg!(nums.contains(&69)); // false
 
     // 4) - remove
-    let mut nums = HashSet::from([1, 2, 3, 4, 4, 3, 5]);
+    // let mut nums = HashSet::from([1, 2, 3, 4, 4, 3, 5]);
     // dbg!(&nums);
     // dbg!(nums.remove(&5)); // true
     //
@@ -33,17 +33,24 @@ fn main() {
     // dbg!(&nums, there_is);
 
     // 5) - length and is empty
-    dbg!(nums.len(), nums.is_empty());
+    // dbg!(nums.len(), nums.is_empty());
 
     // 6) - clear
-    nums.clear();
-    dbg!(&nums);
-
-    nums.extend([1, 2, 3]); // other way of populate the Set
-    dbg!(&nums);
+    /* nums.clear(); */
+    // dbg!(&nums);
+    //
+    // nums.extend([1, 2, 3]); // other way of populate the Set
+    // dbg!(&nums);
 
     // 7) - drain
-    let drained: Vec<i32> = nums.drain().collect();
-    dbg!(drained); // now drained contains 1 2 3 from nums
-    dbg!(&nums); // and nums is empty
+    // let drained: Vec<i32> = nums.drain().collect();
+    // dbg!(drained); // now drained contains 1 2 3 from nums
+    // dbg!(&nums); // and nums is empty
+    
+    // 8) - iteration
+    let users = HashSet::from(["Rusty", "Frosty", "Pepe"]);
+
+    for user in users {
+        println!("Hello {user}!");
+    }
 }
