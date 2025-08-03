@@ -10,7 +10,7 @@
 
 // 2)
 // to add crates (i.e.: random generator)
-//
+// crates would be the similar to libraries in other langs
 
 use rand::Rng;
 
@@ -28,3 +28,11 @@ fn main() {
     roll();
     roll();
 }
+
+// 3) packages
+// cargo new <pkg_name>
+// will create another folder that will contain 
+// it own .toml to load crates, i.e. the rand we 
+// added before
+// https://doc.rust-lang.org/book/ch07-01-packages-and-crates.html
+
