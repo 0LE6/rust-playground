@@ -11,4 +11,9 @@ fn main() {
     let money: i32 = 5_000;
 
     dbg!(money, money > 0);
+
+    // chars
+    let c = 'Q';
+
+    dbg!(c);
 }
