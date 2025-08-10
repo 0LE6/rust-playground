@@ -46,5 +46,21 @@ pub mod banking {
                 );
             }
         }
+
+        pub fn transfer(from: &mut Account, to: &mut Account, amount: f64) {
+            if from.balance >= amount {
+                from.balance -= amount;
+                to.balance += amount;
+                println!(
+                    "Transferred ${:.2} from Account {} to Account {}.",
+                    amount,from.account_number, to.account_number
+                );
+            } else {
+                println!(
+                    "Transfer failed: Account {} has insufficient funds (${:.2})",
+                    from.account_number, from.balance
+                );
+            }
+        }
     }
 }
