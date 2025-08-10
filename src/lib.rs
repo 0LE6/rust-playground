@@ -21,7 +21,7 @@ pub mod banking {
     pub mod transactions {
         // super allows us accese to functionality outside
         // the "transactions" module
-        use::super::accounts::Account;
+        use super::accounts::Account;
 
         pub fn deposit(account: &mut Account, amount: f64) {
             account.balance += amount;
