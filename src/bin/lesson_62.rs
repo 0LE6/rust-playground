@@ -6,6 +6,17 @@ fn main() {
     let p2 = Point { x: 1.5, y: 2.8 }; // allowed
     // let p3 = Point { x: true, y: false }; // not allowed
     // by using the generic T of Num value
+    // 1. the trait bound `bool: Num` is not satisfied
+    // the following other types implement trait `Num`:
+    //   BigInt
+    //   BigUint
+    //   Complex<T>
+    //   Ratio<T>
+    //   Wrapping<T>
+    //   f32
+    //   f64
+    //   i128
+    // and 11 others
     
     dbg!(p1);
 }
