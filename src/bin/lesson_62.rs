@@ -1,14 +1,17 @@
 // 62: generic structs in Rust
+use num::Num;
 
 fn main() {
-    let p1 = Point { x: 1, y: 2 };
-    let p2 = Point { x: 1.5, y: 3 };
+    let p1 = Point { x: 1, y: 2 }; // allowed
+    let p2 = Point { x: 1.5, y: 2.8 }; // allowed
+    // let p3 = Point { x: true, y: false }; // not allowed
+    // by using the generic T of Num value
     
-    dbg!(p1, p2);
+    dbg!(p1);
 }
 
 #[derive(Debug)]
-struct Point<T, U> {
+struct Point<T: Num> { // could also be <T, U>
     x: T,
-    y: U
+    y: T
 }
