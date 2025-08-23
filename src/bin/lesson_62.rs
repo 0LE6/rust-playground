@@ -18,9 +18,24 @@ fn main() {
     //   i128
     // and 11 others
     
-    dbg!(p1);
+    // dbg!(p1);
+    example_2_test();
 }
 
+fn example_2_test() {
+    let conn = true;
+    let result = if conn { Some("Connected!") } else { None };
+
+    dbg!(result);
+}
+
+// Example 2: generic enums
+enum Option<T> {
+    Some(T),
+    None
+}
+
+// Example 1: generic structs
 #[derive(Debug)]
 struct Point<T: Num> { // could also be <T, U>
     x: T,
