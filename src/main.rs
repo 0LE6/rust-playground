@@ -2,6 +2,7 @@
 // extracting a word from a textfile
 
 use::std::env::args;
+use std::fs;
 
 fn main() {
 
@@ -9,6 +10,10 @@ fn main() {
     let query = &args[1];
     let file = &args[2];
 
-    dbg!(query, file);
+    dbg!(&query, &file);
+
+    let content = fs::read_to_string(&file);
+
+    dbg!(content);
 
 }
