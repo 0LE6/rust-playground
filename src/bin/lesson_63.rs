@@ -20,10 +20,16 @@ fn main() {
 
 }
 
-// example 3 
+// example 3
 fn print_this<T: Display>(arg: T) {
     println!("{}", arg); 
 }
+
+// exampel 3.1
+// as we have the generic one we don't need
+// to have tons of specific ones
+// fn print_this(args: str) { }
+// fn print_this(args: i32) { }
 
 struct Point<T> {
     x: T,
