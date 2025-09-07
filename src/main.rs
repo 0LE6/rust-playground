@@ -12,7 +12,7 @@ fn main() {
 
     dbg!(&query, &file);
 
-    let content = fs::read_to_string(&file);
+    let content = fs::read_to_string(&file).expect("::: There's no such file! :::'");
 
     dbg!(content);
 
