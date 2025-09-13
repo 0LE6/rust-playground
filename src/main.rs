@@ -7,23 +7,31 @@ use std::fs;
 fn main() {
 
     let args: Vec<String> = args().collect();
-    let query = &args[1];
-    let file = &args[2];
+    // let query = &args[1];
+    // let file = &args[2];
 
     // dbg!(&query, &file);
 
-    let content = fs::read_to_string(&file)
+    // let content = fs::read_to_string(&file)
+        // .expect("::: There's no such file! :::'");
+    let config = parse_config(&args);
+    let content = fs::read_to_string(config.file_path)
         .expect("::: There's no such file! :::'");
 
-    // dbg!(content);
+    dbg!(content);
 
-    dbg!(parse_config(&args));
+    // dbg!(parse_config(&args));
 
 }
 
-fn parse_config(args: &[String]) -> (&str, &str) {
-    let query = &args[1];
-    let file_path = &args[2];
+struct Config {
+    query: String,
+    file_path: String,
+}
 
-    (query, file_path)
+fn parse_config(args: &[String]) -> Config {
+    let query = args[1].clone();
+    let file_path = args[2].clone();
+
+    Config { query, file_path }
 }
