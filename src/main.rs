@@ -14,7 +14,9 @@ fn main() {
 
     // let content = fs::read_to_string(&file)
         // .expect("::: There's no such file! :::'");
-    let config = parse_config(&args);
+    // let config = parse_config(&args);
+    
+    let config = Config::new(&args);
     let content = fs::read_to_string(config.file_path)
         .expect("::: There's no such file! :::'");
 
@@ -31,11 +33,20 @@ struct Config {
 
 // https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html#creating-a-constructor-for-config
 
+impl Config {
+    fn new(args: &[String]) -> Config {
+        let query = args[1].clone();
+        let file_path = args[2].clone();
+
+        Config { query , file_path }
+    }
+}
+
 
 // https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html#grouping-configuration-values
-fn parse_config(args: &[String]) -> Config {
-    let query = args[1].clone();
-    let file_path = args[2].clone();
-
-    Config { query, file_path }
-}
+// fn parse_config(args: &[String]) -> Config {
+//     let query = args[1].clone();
+//     let file_path = args[2].clone();
+//
+//     Config { query, file_path }
+// }
