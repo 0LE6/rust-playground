@@ -29,6 +29,10 @@ struct Config {
     file_path: String,
 }
 
+// https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html#creating-a-constructor-for-config
+
+
+// https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html#grouping-configuration-values
 fn parse_config(args: &[String]) -> Config {
     let query = args[1].clone();
     let file_path = args[2].clone();
