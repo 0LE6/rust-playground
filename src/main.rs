@@ -16,7 +16,14 @@ fn main() {
         // .expect("::: There's no such file! :::'");
     // let config = parse_config(&args);
     
-    let config = Config::new(&args);
+    let config = match Config::new(&args) {
+        Ok(c) => c,
+        Err(e) => {
+            eprintln!("Error: {}", e);
+            std::process::exit(1);
+        }
+    };
+
     let content = fs::read_to_string(config.file_path)
         .expect("::: There's no such file! :::'");
 
@@ -33,18 +40,35 @@ struct Config {
 
 // https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html#creating-a-constructor-for-config
 
+// Returning a Result Instead of Calling panic!
+// https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html#returning-a-result-instead-of-calling-panic
 impl Config {
-    fn new(args: &[String]) -> Config {
+    fn new(args: &[String]) -> Result<Config, &'static str> {
         if args.len() < 3 {
-            panic!(":: Not enough arguments, mate!")
+            return Err("Not enough arguments, mate!");
         }
 
         let query = args[1].clone();
         let file_path = args[2].clone();
 
-        Config { query , file_path }
+        Ok(Config { query , file_path })
     }
 }
+
+
+// impl Config {
+//     fn new(args: &[String]) -> Config {
+//         // https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html#improving-the-error-message
+//         if args.len() < 3 {
+//             panic!(":: Not enough arguments, mate!")
+//         }
+//
+//         let query = args[1].clone();
+//         let file_path = args[2].clone();
+//
+//         Config { query , file_path }
+//     }
+// }
 
 
 // https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html#grouping-configuration-values
