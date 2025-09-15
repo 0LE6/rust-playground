@@ -33,10 +33,13 @@ fn main() {
         }
     );
 
-    let content = fs::read_to_string(config.file_path)
-        .expect("::: There's no such file! :::'");
+    // 3rd form ----------------------------------
+    run(config);
 
-    dbg!(content);
+    // let content = fs::read_to_string(config.file_path)
+    //     .expect("::: There's no such file! :::'");
+
+    // dbg!(content);
 
     // dbg!(parse_config(&args));
 
@@ -45,6 +48,14 @@ fn main() {
 struct Config {
     query: String,
     file_path: String,
+}
+
+fn run(config: Config) {
+    let content = fs::read_to_string(config.file_path)
+        .expect("::: There's no such file! :::'");
+    
+    println!("With the following text: \n {content}");
+
 }
 
 // https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html#creating-a-constructor-for-config
