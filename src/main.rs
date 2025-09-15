@@ -2,7 +2,7 @@
 // extracting a word from a textfile
 
 use::std::env::args;
-use std::fs;
+use std::{fs, process};
 
 fn main() {
 
@@ -15,14 +15,23 @@ fn main() {
     // let content = fs::read_to_string(&file)
         // .expect("::: There's no such file! :::'");
     // let config = parse_config(&args);
+   
+    // 1st from ---------------------------------
+    // let config = match Config::new(&args) {
+    //     Ok(c) => c,
+    //     Err(e) => {
+    //         eprintln!("Error: {}", e);
+    //         std::process::exit(1);
+    //     }
+    // };
     
-    let config = match Config::new(&args) {
-        Ok(c) => c,
-        Err(e) => {
-            eprintln!("Error: {}", e);
-            std::process::exit(1);
+    // 2nd form ---------------------------------
+    let config = Config::new(&args).unwrap_or_else(
+        |err| {
+            println!("Error parsing args {err}");
+            process::exit(1);
         }
-    };
+    );
 
     let content = fs::read_to_string(config.file_path)
         .expect("::: There's no such file! :::'");
