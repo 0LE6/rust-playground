@@ -2,7 +2,7 @@
 // extracting a word from a textfile
 
 use::std::env::args;
-use std::{fs, process};
+use std::{error::Error, fs, process};
 
 fn main() {
 
@@ -26,7 +26,7 @@ fn main() {
     // };
     
     // 2nd form ---------------------------------
-    let config = Config::new(&args).unwrap_or_else(
+    let config = Config::build(&args).unwrap_or_else(
         |err| {
             println!("Error parsing args {err}");
             process::exit(1);
@@ -50,11 +50,12 @@ struct Config {
     file_path: String,
 }
 
-fn run(config: Config) {
-    let content = fs::read_to_string(config.file_path)
-        .expect("::: There's no such file! :::'");
+fn run(config: Config) -> Result<(), Box<dyn Error>> {
+    let content = fs::read_to_string(config.file_path)?;
     
-    println!("With the following text: \n {content}");
+    println!("\nWith the following text: \n {content}");
+
+    Ok(())
 
 }
 
@@ -63,7 +64,7 @@ fn run(config: Config) {
 // Returning a Result Instead of Calling panic!
 // https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html#returning-a-result-instead-of-calling-panic
 impl Config {
-    fn new(args: &[String]) -> Result<Config, &'static str> {
+    fn build(args: &[String]) -> Result<Config, &'static str> {
         if args.len() < 3 {
             return Err("Not enough arguments, mate!");
         }
