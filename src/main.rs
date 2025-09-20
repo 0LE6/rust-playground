@@ -34,7 +34,7 @@ fn main() {
     );
 
     // 3rd form ----------------------------------
-    run(config);
+    // run(config);
 
     // let content = fs::read_to_string(config.file_path)
     //     .expect("::: There's no such file! :::'");
@@ -42,7 +42,12 @@ fn main() {
     // dbg!(content);
 
     // dbg!(parse_config(&args));
-
+    
+    // Handling Errors Returned from run in main
+    if let Err(e) = run(config) {
+        println!("Application error: {e}");
+        process::exit(1);
+    }
 }
 
 struct Config {
