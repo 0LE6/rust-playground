@@ -50,37 +50,6 @@ fn main() {
     }
 }
 
-struct Config {
-    query: String,
-    file_path: String,
-}
-
-fn run(config: Config) -> Result<(), Box<dyn Error>> {
-
-    let content = fs::read_to_string(config.file_path)?;
-    
-    println!("\nWith the following text: \n {content}");
-
-    Ok(())
-}
-
-// https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html#creating-a-constructor-for-config
-
-// Returning a Result Instead of Calling panic!
-// https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html#returning-a-result-instead-of-calling-panic
-impl Config {
-    fn build(args: &[String]) -> Result<Config, &'static str> {
-        if args.len() < 3 {
-            return Err("Not enough arguments, mate!");
-        }
-
-        let query = args[1].clone();
-        let file_path = args[2].clone();
-
-        Ok(Config { query , file_path })
-    }
-}
-
 
 // impl Config {
 //     fn new(args: &[String]) -> Config {
