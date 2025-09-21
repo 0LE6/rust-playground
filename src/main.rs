@@ -56,12 +56,12 @@ struct Config {
 }
 
 fn run(config: Config) -> Result<(), Box<dyn Error>> {
+
     let content = fs::read_to_string(config.file_path)?;
     
     println!("\nWith the following text: \n {content}");
 
     Ok(())
-
 }
 
 // https://doc.rust-lang.org/book/ch12-03-improving-error-handling-and-modularity.html#creating-a-constructor-for-config
