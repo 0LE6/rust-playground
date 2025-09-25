@@ -4,9 +4,25 @@
 use::std::env::args;
 use std::{error::Error, fs, process};
 
+use::rust_playground::Config; // lib.rs
+
 fn main() {
 
+    //Splitting Code into a Library Crate
+    
     let args: Vec<String> = args().collect();
+
+    let config = Config::build(&args).unwrap_or_else(|err| {
+        println!("Problem parsing arguments: {err}");
+        process::exit(1);
+    });
+
+    if let Err(e) = rust_playground::run(config) {
+        println!("Application error: {e}");
+        process::exit(1);
+    }
+
+    // let args: Vec<String> = args().collect();
     // let query = &args[1];
     // let file = &args[2];
 
@@ -26,12 +42,12 @@ fn main() {
     // };
     
     // 2nd form ---------------------------------
-    let config = Config::build(&args).unwrap_or_else(
-        |err| {
-            println!("Error parsing args {err}");
-            process::exit(1);
-        }
-    );
+    // let config = Config::build(&args).unwrap_or_else(
+    //     |err| {
+    //         println!("Error parsing args {err}");
+    //         process::exit(1);
+    //     }
+    // );
 
     // 3rd form ----------------------------------
     // run(config);
@@ -44,10 +60,10 @@ fn main() {
     // dbg!(parse_config(&args));
     
     // Handling Errors Returned from run in main
-    if let Err(e) = run(config) {
-        println!("Application error: {e}");
-        process::exit(1);
-    }
+    // if let Err(e) = run(config) {
+    //     println!("Application error: {e}");
+    //     process::exit(1);
+    // }
 }
 
 
@@ -73,3 +89,4 @@ fn main() {
 //
 //     Config { query, file_path }
 // }
+
