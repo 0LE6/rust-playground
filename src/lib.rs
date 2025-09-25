@@ -70,13 +70,13 @@
 use std::error::Error;
 use std::fs;
 
-struct Config {
-    query: String,
-    file_path: String,
+pub struct Config {
+    pub query: String,
+    pub file_path: String,
 }
 
 impl Config {
-    fn build(args: &[String]) -> Result<Config, &'static str> {
+    pub fn build(args: &[String]) -> Result<Config, &'static str> {
         if args.len() < 3 {
             return Err("Not enough arguments, mate!");
         }
@@ -88,7 +88,7 @@ impl Config {
     }
 }
 
-fn run(config: Config) -> Result<(), Box<dyn Error>> {
+pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 
     let content = fs::read_to_string(config.file_path)?;
     
