@@ -32,12 +32,17 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 // example for not use Vec, faster and the same understanding
 // pub fn search<'a>(query: &str, contents: &'a str) {/* -> Vec<&'a str> { */
 
-pub fn search<'a>(query: &str, contents: &'a str) {/* -> Vec<&'a str> { */
+pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
+    let mut result = Vec::new();
+
     for line in contents.lines() {
         if line.contains(query) {
+            result.push(line);
             println!("Eureka! It worked! :D");
         }
     }
+
+    result
 }
 
 #[cfg(test)]
@@ -46,11 +51,11 @@ mod tests {
 
     #[test]
     fn one_result() {
-        let query = "productive";
+        let query = "safe, fast, productive.";
         let contents = "\
-            Rust:
-            safe, fast, productive.
-            Pick three!";
+Rust:
+safe, fast, productive.
+Pick three!";
         assert_eq!(vec!["safe, fast, productive."], search(query, contents));
     }
 }
