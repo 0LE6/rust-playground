@@ -29,8 +29,15 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
-pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    vec![]
+// example for not use Vec, faster and the same understanding
+// pub fn search<'a>(query: &str, contents: &'a str) {/* -> Vec<&'a str> { */
+
+pub fn search<'a>(query: &str, contents: &'a str) {/* -> Vec<&'a str> { */
+    for line in contents.lines() {
+        if line.contains(query) {
+            println!("Eureka! It worked! :D");
+        }
+    }
 }
 
 #[cfg(test)]
@@ -39,7 +46,7 @@ mod tests {
 
     #[test]
     fn one_result() {
-        let query = "duct";
+        let query = "productive";
         let contents = "\
             Rust:
             safe, fast, productive.
