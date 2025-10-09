@@ -1,3 +1,7 @@
+[[bin]]
+name = "lesson_01_mat"
+path = "src/bin/mats/lesson_01_mat/main.rs"
+
 [package]
 name = "rust-playground"
 version = "0.1.0"
