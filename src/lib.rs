@@ -38,7 +38,8 @@ pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
     for line in contents.lines() {
         if line.contains(query) {
             result.push(line);
-            println!("Eureka! It worked! :D");
+            println!("Eureka! It worked! :D\n");
+            println!("fn search()\n");
         }
     }
 
@@ -57,6 +58,7 @@ pub fn search_case_insensitive<'a>(
     for line in contents.lines() {
         if line.to_lowercase().contains(&query) {
             result.push(line);
+            println!("fn search_case_insensitive()\n");
         }
     }
 
