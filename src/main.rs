@@ -2,7 +2,7 @@
 // extracting a word from a textfile
 
 use::std::env::args;
-use std::{error::Error, fs, process};
+use std::{env, error::Error, fs, process};
 
 use rust_playground::{search, search_case_insensitive};
 use::rust_playground::Config; // lib.rs
@@ -11,6 +11,25 @@ pub struct Configuration {
     pub query: String,
     pub file_path: String,
     pub ignore_case: bool,
+}
+
+impl Configuration {
+    fn build(args: &[String]) -> Result<Configuration, &'static str> {
+        if args.len() < 3 {
+            return Err("Not enough arguments!");
+        }
+
+        let query = args[1].clone();
+        let file_path = args[2].clone();
+
+        let ignore_case = env::var("IGNORE_CASE").is_ok();
+
+        Ok(Configuration { 
+            query, 
+            file_path, 
+            ignore_case 
+        })
+    }
 }
 
 fn run(config: Configuration) -> Result<(), Box<dyn Error>> {
@@ -27,6 +46,20 @@ fn run(config: Configuration) -> Result<(), Box<dyn Error>> {
     }
 
     Ok(())
+}
+
+fn main() {
+    let args: Vec<String> = env::args().collect();
+
+    let config = Configuration::build(&args).unwrap_or_else(|err| {
+        println!("Problem parsing arguments: {err}");
+        process::exit(1);
+    });
+
+    if let Err(e) = run(config) {
+        println!("Application error: {e}");
+        process::exit(1);
+    }
 }
 
 // fn main() {
