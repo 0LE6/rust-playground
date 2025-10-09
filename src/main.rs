@@ -6,6 +6,12 @@ use std::{error::Error, fs, process};
 
 use::rust_playground::Config; // lib.rs
 
+pub struct Configuration {
+    pub query: String,
+    pub file_path: String,
+    pub ignore_case: bool,
+}
+
 fn main() {
 
     //Splitting Code into a Library Crate
