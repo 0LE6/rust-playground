@@ -1,3 +1,3 @@
 fn main() {
-    println!("mats rocks!");
+    println!("maths rocks!");
 }
