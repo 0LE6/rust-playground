@@ -4,6 +4,7 @@
 use::std::env::args;
 use std::{error::Error, fs, process};
 
+use rust_playground::{search, search_case_insensitive};
 use::rust_playground::Config; // lib.rs
 
 pub struct Configuration {
@@ -12,74 +13,90 @@ pub struct Configuration {
     pub ignore_case: bool,
 }
 
-fn main() {
-
-    //Splitting Code into a Library Crate
+fn run(config: Configuration) -> Result<(), Box<dyn Error>> {
+    let contents = fs::read_to_string(config.file_path)?;
     
-    let args: Vec<String> = args().collect();
-
-    // using or lib.rs
-    // let config = Config::build(&args).unwrap_or_else(|err| {
-    //     println!("Problem parsing arguments: {err}");
-    //     process::exit(1);
-    // });
-    //
-    // if let Err(e) = rust_playground::run(config) {
-    //     println!("Application error: {e}");
-    //     process::exit(1);
-    // }
-
-    let uwu = "\
-        qwerty
-        asdf
-        pepito
-        rust";
-
-    let owo = rust_playground::search("pepito", uwu);    
-
-    // let args: Vec<String> = args().collect();
-    // let query = &args[1];
-    // let file = &args[2];
-
-    // dbg!(&query, &file);
-
-    // let content = fs::read_to_string(&file)
-        // .expect("::: There's no such file! :::'");
-    // let config = parse_config(&args);
-   
-    // 1st from ---------------------------------
-    // let config = match Config::new(&args) {
-    //     Ok(c) => c,
-    //     Err(e) => {
-    //         eprintln!("Error: {}", e);
-    //         std::process::exit(1);
-    //     }
-    // };
+    let results = if config.ignore_case {
+        search_case_insensitive(&config.query, &contents)
+    } else {
+        search(&config.query, &contents)
+    };
     
-    // 2nd form ---------------------------------
-    // let config = Config::build(&args).unwrap_or_else(
-    //     |err| {
-    //         println!("Error parsing args {err}");
-    //         process::exit(1);
-    //     }
-    // );
+    for line in results {
+        println!("{line}");
+    }
 
-    // 3rd form ----------------------------------
-    // run(config);
-
-    // let content = fs::read_to_string(config.file_path)
-    //     .expect("::: There's no such file! :::'");
-
-    // dbg!(content);
-
-    // dbg!(parse_config(&args));
-    
-    // Handling Errors Returned from run in main
-    // if let Err(e) = run(config) {
-    //     println!("Application error: {e}");
-    //     process::exit(1);
-    // }
+    Ok(())
 }
+
+// fn main() {
+//
+//     //Splitting Code into a Library Crate
+//     
+//     let args: Vec<String> = args().collect();
+//
+//     // using or lib.rs
+//     // let config = Config::build(&args).unwrap_or_else(|err| {
+//     //     println!("Problem parsing arguments: {err}");
+//     //     process::exit(1);
+//     // });
+//     //
+//     // if let Err(e) = rust_playground::run(config) {
+//     //     println!("Application error: {e}");
+//     //     process::exit(1);
+//     // }
+//
+//     let uwu = "\
+//         qwerty
+//         asdf
+//         pepito
+//         rust";
+//
+//     let owo = rust_playground::search("pepito", uwu);    
+//
+//     // let args: Vec<String> = args().collect();
+//     // let query = &args[1];
+//     // let file = &args[2];
+//
+//     // dbg!(&query, &file);
+//
+//     // let content = fs::read_to_string(&file)
+//         // .expect("::: There's no such file! :::'");
+//     // let config = parse_config(&args);
+//    
+//     // 1st from ---------------------------------
+//     // let config = match Config::new(&args) {
+//     //     Ok(c) => c,
+//     //     Err(e) => {
+//     //         eprintln!("Error: {}", e);
+//     //         std::process::exit(1);
+//     //     }
+//     // };
+//     
+//     // 2nd form ---------------------------------
+//     // let config = Config::build(&args).unwrap_or_else(
+//     //     |err| {
+//     //         println!("Error parsing args {err}");
+//     //         process::exit(1);
+//     //     }
+//     // );
+//
+//     // 3rd form ----------------------------------
+//     // run(config);
+//
+//     // let content = fs::read_to_string(config.file_path)
+//     //     .expect("::: There's no such file! :::'");
+//
+//     // dbg!(content);
+//
+//     // dbg!(parse_config(&args));
+//     
+//     // Handling Errors Returned from run in main
+//     // if let Err(e) = run(config) {
+//     //     println!("Application error: {e}");
+//     //     process::exit(1);
+//     // }
+// }
 
 
 // impl Config {
