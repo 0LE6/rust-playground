@@ -1,7 +1,7 @@
 // https://doc.rust-lang.org/book/ch13-00-functional-features.html#functional-language-features-iterators-and-closures
 
 // Functional Language Features: Iterators and Closures
-
+// https://doc.rust-lang.org/book/ch13-01-closures.html#listing-13-1
 #[derive(Debug, PartialEq, Clone, Copy)]
 enum ShirtColor {
     Red,
