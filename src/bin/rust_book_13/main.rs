@@ -1,5 +1,7 @@
 // https://doc.rust-lang.org/book/ch13-00-functional-features.html#functional-language-features-iterators-and-closures
 
+use std::{thread, time::Duration};
+
 // Functional Language Features: Iterators and Closures
 // https://doc.rust-lang.org/book/ch13-01-closures.html#listing-13-1
 #[derive(Debug, PartialEq, Clone, Copy)]
@@ -54,4 +56,11 @@ fn main() {
         user_pref2, giveaway2
     );
 
+
+    //https://doc.rust-lang.org/book/ch13-01-closures.html#closure-type-inference-and-annotation
+    let expensive_closure = |num: u32| -> u32 {
+        println!("calculating slowly...");
+        thread::sleep(Duration::from_secs(2));
+        num
+    };
 }
