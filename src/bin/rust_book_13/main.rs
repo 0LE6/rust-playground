@@ -15,6 +15,7 @@ struct Inventory {
 }
 
 impl Inventory {
+    // closure example part
     fn giveaway(&self, user_preference: Option<ShirtColor>) -> ShirtColor {
         user_preference.unwrap_or_else(|| self.most_stocked())
     }
@@ -58,9 +59,13 @@ fn main() {
 
 
     //https://doc.rust-lang.org/book/ch13-01-closures.html#closure-type-inference-and-annotation
+    // assign closure to expensive_closure variable
     let expensive_closure = |num: u32| -> u32 {
         println!("calculating slowly...");
         thread::sleep(Duration::from_secs(2));
         num
     };
+    
+    let x = expensive_closure(3);
+    dbg!(x);
 }
