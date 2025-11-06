@@ -68,4 +68,19 @@ fn main() {
     
     let x = expensive_closure(3);
     dbg!(x);
+
+    // another example (4 equivalents)    
+    fn add_one_v1(x: u32) -> u32  { x + 1 }
+    let add_one_v2 = |x: u32| -> u32  { x + 1 };
+    let add_one_v3 = |x| { x + 1 };
+    let add_one_v4 = |x| x + 1;
+    
+    let n: u32 = 68;
+
+    dbg!(
+        add_one_v1(n),
+        add_one_v2(n),
+        add_one_v3(n),
+        add_one_v4(n)
+    );
 }
