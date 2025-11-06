@@ -78,9 +78,9 @@ fn main() {
     let n: u32 = 68;
 
     dbg!(
-        add_one_v1(n),
-        add_one_v2(n),
-        add_one_v3(n),
-        add_one_v4(n)
+        add_one_v1(n), // 69
+        add_one_v2(n), // 69
+        add_one_v3(n), // 69
+        add_one_v4(n), // 69
     );
 }
