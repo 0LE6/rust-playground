@@ -83,4 +83,10 @@ fn main() {
         add_one_v3(n), // 69
         add_one_v4(n), // 69
     );
+
+    // example to fail
+    let example_closure = |x| x;
+
+    let s = example_closure(String::from("hello"));
+    let n = example_closure(5);
 }
