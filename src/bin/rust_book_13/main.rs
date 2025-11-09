@@ -87,6 +87,8 @@ fn main() {
     // example to fail
     let example_closure = |x| x;
 
+    // Attempting to call a closure whose types are inferred
+    // with two different types
     let s = example_closure(String::from("hello"));
     let n = example_closure(5);
 }
