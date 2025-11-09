@@ -88,7 +88,10 @@ fn main() {
     let example_closure = |x| x;
 
     // Attempting to call a closure whose types are inferred
-    // with two different types
+    // with two different types.
     let s = example_closure(String::from("hello"));
+
+    // the first time we call the closure it gets the String
+    // type and fails when we try reasign it to another.
     let n = example_closure(5);
 }
