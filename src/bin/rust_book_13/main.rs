@@ -62,7 +62,7 @@ fn main() {
     // assign closure to expensive_closure variable
     let expensive_closure = |num: u32| -> u32 {
         println!("calculating slowly...");
-        thread::sleep(Duration::from_secs(2));
+        thread::sleep(Duration::from_secs(1));
         num
     };
     
@@ -93,5 +93,16 @@ fn main() {
 
     // the first time we call the closure it gets the String
     // type and fails when we try reasign it to another.
-    let n = example_closure(5);
+    // let n = example_closure(5);
+    
+    // https://doc.rust-lang.org/book/ch13-01-closures.html#capturing-references-or-moving-ownership
+    
+    let list = vec![1, 2, 3];
+    println!("Before defining closure: {list:?}");
+
+    let only_borrows = || println!("From closure: {list:?}");
+
+    println!("Before calling the closure: {list:?}");
+    only_borrows();
+    println!("After calling the closure: {list:?}");
 }
