@@ -97,12 +97,13 @@ fn main() {
     
     // https://doc.rust-lang.org/book/ch13-01-closures.html#capturing-references-or-moving-ownership
     
-    let list = vec![1, 2, 3];
+    let mut list = vec![1, 2, 3];
     println!("Before defining closure: {list:?}");
 
-    let only_borrows = || println!("From closure: {list:?}");
+    // https://doc.rust-lang.org/book/ch13-01-closures.html#listing-13-5
+    let mut only_borrows = || list.push(69);
 
-    println!("Before calling the closure: {list:?}");
+    // println!("Before calling the closure: {list:?}");
     only_borrows();
     println!("After calling the closure: {list:?}");
 }
