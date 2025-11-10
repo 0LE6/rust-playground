@@ -100,10 +100,15 @@ fn main() {
     let mut list = vec![1, 2, 3];
     println!("Before defining closure: {list:?}");
 
+    //
+    thread::spawn(move || println!("From thread: {list:?}"))
+        .join()
+        .unwrap();
+
     // https://doc.rust-lang.org/book/ch13-01-closures.html#listing-13-5
-    let mut only_borrows = || list.push(69);
+    // let mut only_borrows = || list.push(69);
 
     // println!("Before calling the closure: {list:?}");
-    only_borrows();
-    println!("After calling the closure: {list:?}");
+    // only_borrows();
+    // println!("After calling the closure: {list:?}");
 }
