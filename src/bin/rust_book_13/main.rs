@@ -97,7 +97,7 @@ fn main() {
     
     // https://doc.rust-lang.org/book/ch13-01-closures.html#capturing-references-or-moving-ownership
     
-    let mut list = vec![1, 2, 3];
+    let list = vec![1, 2, 3];
     println!("Before defining closure: {list:?}");
 
     //
