@@ -111,6 +111,25 @@ fn main() {
     // println!("Before calling the closure: {list:?}");
     // only_borrows();
     // println!("After calling the closure: {list:?}");
+    
+    /* Example using sort_by_key
+     * https://doc.rust-lang.org/book/ch13-01-closures.html#moving-captured-values-out-of-closures-and-the-fn-traits
+    */
+    let mut list = [
+        Rectangle { width: 10, height: 1},
+        Rectangle { width: 3, height: 5},
+        Rectangle { width: 7, height: 12},
+    ];
+
+    // take FnMut
+    list.sort_by_key(|r| r.width);
+    println!("{list:#?}");
+}
+
+#[derive(Debug)]
+struct Rectangle {
+    width: u32,
+    height: u32,
 }
 
 /*
