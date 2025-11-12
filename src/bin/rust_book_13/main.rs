@@ -112,3 +112,19 @@ fn main() {
     // only_borrows();
     // println!("After calling the closure: {list:?}");
 }
+
+/*
+* example of FnOnce
+* https://doc.rust-lang.org/book/ch13-01-closures.html#moving-captured-values-out-of-closures-and-the-fn-traits
+
+impl<T> Option<T> {
+    pub fn unwrap_or_else<F>(self, f: F) -> T
+    where
+        F: FnOnce() -> T
+    {
+        match self {
+            Some(x) => x,
+            None => f(),
+        }
+    }
+}*/
