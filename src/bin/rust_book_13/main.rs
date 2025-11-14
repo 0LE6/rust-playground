@@ -126,6 +126,7 @@ fn main() {
     println!("{list:#?}");
 
     // take FnOnce (not compiling!)
+    // https://doc.rust-lang.org/book/ch13-01-closures.html#listing-13-8
     // let mut sort_operations = vec![];
     // let value = String::from("closure called");
     //
