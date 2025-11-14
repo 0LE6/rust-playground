@@ -124,6 +124,15 @@ fn main() {
     // take FnMut
     list.sort_by_key(|r| r.width);
     println!("{list:#?}");
+
+    // take FnOnce (not compiling!)
+    // let mut sort_operations = vec![];
+    // let value = String::from("closure called");
+    //
+    // list.sort_by_key(|r| {
+    //     sort_operations.push(value);
+    //     r.width
+    // });
 }
 
 #[derive(Debug)]
