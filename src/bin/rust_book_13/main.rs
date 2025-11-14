@@ -123,7 +123,7 @@ fn main() {
 
     // take FnMut
     list.sort_by_key(|r| r.width);
-    println!("{list:#?}");
+    // println!("{list:#?}");
 
     // take FnOnce (not compiling!)
     // https://doc.rust-lang.org/book/ch13-01-closures.html#listing-13-8
@@ -134,6 +134,13 @@ fn main() {
     //     sort_operations.push(value);
     //     r.width
     // });
+    
+    let mut num_sort_operations = 0;
+    list.sort_by_key(|r| {
+        num_sort_operations += 1;
+        r.width
+    });
+    println!("{list:#?}, sorted in {num_sort_operations} operations.");
 }
 
 #[derive(Debug)]
