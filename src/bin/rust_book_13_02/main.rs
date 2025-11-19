@@ -17,4 +17,24 @@ fn main() {
     for val in v1_iter {
         println!("Got: {val}");
     }
+
+    
+
+}
+/*
+* https://doc.rust-lang.org/book/ch13-02-iterators.html#the-iterator-trait-and-the-next-method
+*/
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn iterator_demonstration() {
+        let v1 = vec![1, 2, 3];
+
+        let mut v1_iter = v1.iter();
+
+        assert_eq!(v1_iter.next(), Some(&1));
+        assert_eq!(v1_iter.next(), Some(&2));
+        assert_eq!(v1_iter.next(), Some(&3));
+        assert_eq!(v1_iter.next(), None);
+    }
 }
