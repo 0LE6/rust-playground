@@ -4,6 +4,9 @@
  * https://doc.rust-lang.org/book/ch13-02-iterators.html#the-iterator-trait-and-the-next-method
 */
 
+/*
+* https://doc.rust-lang.org/book/ch13-02-iterators.html#the-iterator-trait-and-the-next-method
+*/
 #[test]
 fn iterator_demonstration() {
     let v1 = vec![1, 2, 3];
