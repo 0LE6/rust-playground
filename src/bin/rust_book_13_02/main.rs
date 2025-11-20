@@ -18,7 +18,12 @@ fn main() {
         println!("Got: {val}");
     }
 
-    
+    /*
+    * https://doc.rust-lang.org/book/ch13-02-iterators.html#methods-that-produce-other-iterators
+    */
+    let v2: Vec<i32> = vec![1, 2, 3];
+
+    v2.iter().map(|x| x + 1);
 
 }
 /*
