@@ -23,8 +23,10 @@ fn main() {
     */
     let v2: Vec<i32> = vec![1, 2, 3];
 
-    v2.iter().map(|x| x + 1);
+    let v3: Vec<_> = v2.iter().map(|x| x + 1).collect();
 
+    // assert_eq!(v3, vec![2, 3, 4]);
+    dbg!(v3);
 }
 /*
 * https://doc.rust-lang.org/book/ch13-02-iterators.html#the-iterator-trait-and-the-next-method
