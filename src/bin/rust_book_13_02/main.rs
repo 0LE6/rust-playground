@@ -27,6 +27,13 @@ fn main() {
 
     // assert_eq!(v3, vec![2, 3, 4]);
     dbg!(v3);
+
+    println!("--------------------");
+
+    // https://doc.rust-lang.org/book/ch13-02-iterators.html#methods-that-produce-other-iterators
+    // let v4: Vec<i32> = vec![1, 2, 3];
+    // v4.iter().map(|x| x + 1);
+     
 }
 /*
 * https://doc.rust-lang.org/book/ch13-02-iterators.html#the-iterator-trait-and-the-next-method
@@ -58,8 +65,8 @@ mod tests {
 
         assert_eq!(total, 6);
     }
+    
 
-    // test
 }
 
 
