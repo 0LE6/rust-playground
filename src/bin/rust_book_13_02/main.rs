@@ -33,13 +33,29 @@ fn main() {
     // https://doc.rust-lang.org/book/ch13-02-iterators.html#methods-that-produce-other-iterators
     // let v4: Vec<i32> = vec![1, 2, 3];
     // v4.iter().map(|x| x + 1);
+
+
+    // https://doc.rust-lang.org/book/ch13-02-iterators.html#using-closures-that-capture-their-environment
      
 }
+
+#[derive(PartialEq, Debug)]
+struct Shoe {
+    size: u32,
+    style: String,
+}
+
+fn shoe_in_sizes(shoes: Vec<Shoe>, shoe_size: u32) -> Vec<Shoe> {
+    shoes.into_iter().filter(|s| s.size == shoe_size).collect()
+}
+
 /*
 * https://doc.rust-lang.org/book/ch13-02-iterators.html#the-iterator-trait-and-the-next-method
 */
 #[cfg(test)]
 mod tests {
+    use super::*;
+
     #[test]
     fn iterator_demonstration() {
         let v1 = vec![1, 2, 3];
@@ -66,7 +82,40 @@ mod tests {
         assert_eq!(total, 6);
     }
     
+    // Using Closures That Capture Their Environment 
+    #[test]
+    fn filters_by_size() {
+        let shoes = vec![
+            Shoe {
+                size: 10,
+                style: String::from("sneaker"),
+            },
+            Shoe {
+                size: 13,
+                style: String::from("sandal"),
+            },
+            Shoe {
+                size: 10,
+                style: String::from("boot"),
+            },
+        ];
 
+        let in_my_size = shoe_in_sizes(shoes, 10);
+
+        assert_eq!(
+            in_my_size,
+            vec![
+                Shoe {
+                    size: 10,
+                    style: String::from("sneaker"),
+                },
+                Shoe {
+                    size: 10,
+                    style: String::from("boot"),
+                },
+            ]
+        );
+    }
 }
 
 
