@@ -29,7 +29,9 @@ pub struct Config {
 // https://doc.rust-lang.org/book/ch13-03-improving-our-io-project.html#removing-a-clone-using-an-iterator
 
 impl Config {
-    fn build(args: &[String]) -> Result<Config, &'static str> {
+    fn build(
+        mut args: impl Iterator<Item = String>,
+    ) -> Result<Config, &'static str> {
         if args.len() < 3 {
             return Err("not enough arguments");
         }
