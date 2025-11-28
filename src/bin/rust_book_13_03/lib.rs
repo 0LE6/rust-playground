@@ -31,18 +31,29 @@ pub fn run(config: Config) -> Result<(), Box<dyn Error>> {
 // example for not use Vec, faster and the same understanding
 // pub fn search<'a>(query: &str, contents: &'a str) {/* -> Vec<&'a str> { */
 
-pub fn search<'a>(query: &str, contents: &'a str) -> Vec<&'a str> {
-    let mut result = Vec::new();
+pub fn search<'a>(
+    query: &str, 
+    contents: &'a str
+    ) -> Vec<&'a str> {
 
-    for line in contents.lines() {
-        if line.contains(query) {
-            result.push(line);
-            println!("Eureka! It worked! :D\n");
-            println!("fn search()\n");
-        }
-    }
+    // --- new version using Iteratos ---
+    contents
+        .lines()
+        .filter(|line| line.contains(query))
+        .collect()
 
-    result
+    // --- old version 12-19 ---
+    // let mut result = Vec::new();
+    //
+    // for line in contents.lines() {
+    //     if line.contains(query) {
+    //         result.push(line);
+    //         println!("Eureka! It worked! :D\n");
+    //         println!("fn search()\n");
+    //     }
+    // }
+
+    // result
 }
 
 pub fn search_case_insensitive<'a>(
@@ -52,16 +63,21 @@ pub fn search_case_insensitive<'a>(
 
     let query = query.to_lowercase();
     
-    let mut result = Vec::new();
+    // let mut result = Vec::new();
 
-    for line in contents.lines() {
-        if line.to_lowercase().contains(&query) {
-            result.push(line);
-            println!("fn search_case_insensitive()\n");
-        }
-    }
+    // for line in contents.lines() {
+    //     if line.to_lowercase().contains(&query) {
+    //         result.push(line);
+    //         println!("fn search_case_insensitive()\n");
+    //     }
+    // }
 
-    result
+    contents
+        .lines()
+        .filter(|line| line.to_lowercase().contains(&query))
+        .collect()
+
+    // result
 }
 
 #[cfg(test)]

@@ -33,6 +33,7 @@ impl Config {
         mut args: impl Iterator<Item = String>,
     ) -> Result<Config, &'static str> {
         // https://doc.rust-lang.org/book/ch13-03-improving-our-io-project.html#using-iterator-trait-methods-instead-of-indexing
+        // empty call 'cause the first args is the program itself
         args.next();
 
         let query = match args.next() {
