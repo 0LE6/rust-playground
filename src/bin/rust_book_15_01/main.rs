@@ -16,5 +16,6 @@
 //      being of a specific type
 
 fn main() {
-    println!(" --- 15 ---");
+    let b = Box::new(69);
+    println!("b = {b}");
 }
