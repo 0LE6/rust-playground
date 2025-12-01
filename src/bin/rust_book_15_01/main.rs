@@ -23,7 +23,17 @@ fn main() {
     let list = Cons(1, Cons(2, Cons(3, Nil)));
 }
 
+// It will give an error because
+// this type “has infinite size.”
+
+// Compiler advice:
+// * help: insert some indirection (e.g., a `Box`, `Rc`, or `&`) 
+// * to break the cycle
 enum List {
-    Cons(i32, List),
+    // Cons(i32, List),
+    Cons(i32, Box<List>),
+    // The Box<T> will point to the next List 
+    // value that will be on the heap rather 
+    // than inside the Cons variant.
     Nil,
 }
