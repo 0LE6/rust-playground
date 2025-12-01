@@ -14,10 +14,13 @@
 // *    When you want to own a value and you care only that 
 //      it’s a type that implements a particular trait rather than 
 //      being of a specific type
+use crate::List::{Cons, Nil};
 
 fn main() {
-    let b = Box::new(69);
-    println!("b = {b}");
+    // let b = Box::new(69);
+    // println!("b = {b}");
+
+    let list = Cons(1, Cons(2, Cons(3, Nil)));
 }
 
 enum List {
