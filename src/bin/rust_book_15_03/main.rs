@@ -17,15 +17,16 @@ fn main() {
     let csp = CustomSmartPointer {
         data: String::from("my STUFF"),
     };
-    let csp_2 = CustomSmartPointer {
-        data: String::from("other STUFF"),
-    };
+    // let csp_2 = CustomSmartPointer {
+    //     data: String::from("other STUFF"),
+    // };
 
     println!("CustomSmartPointer created!");
-    csp.drop();
+    // csp.drop();
     // consider using `drop` function
     // |
     // 25 -     csp.drop();
     // 25 +     drop(csp);
+    drop(csp);
     println!("CustomSmartPointer created!");
 }
