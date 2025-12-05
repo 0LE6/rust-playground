@@ -1,6 +1,8 @@
 // Treating Smart Pointers Like 
 // Regular References with "Deref"
 
+use std::ops::Deref;
+
 fn main() {
     let x = 5;
     // let y = &x;
@@ -17,5 +19,14 @@ struct MyBox<T>(T);
 impl<T> MyBox<T> {
     fn new(x: T) -> MyBox<T> {
         MyBox(x)
+    }
+}
+
+// Implementing the Deref Trait
+impl<T> Deref for MyBox<T> {
+    type Target = T;
+
+    fn deref(&self) -> &Self::Target {
+        &self.0
     }
 }
