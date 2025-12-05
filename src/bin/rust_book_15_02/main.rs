@@ -4,8 +4,14 @@
 use std::ops::Deref;
 
 fn main() {
-   
+
 }
+
+// Implicit Deref Coercions with Functions and Methods
+fn hello(name: &str) {
+    println!("Hello, {name} !");
+}
+
 
 // Defining Our Own Smart Pointer
 struct MyBox<T>(T);
@@ -20,8 +26,10 @@ impl<T> MyBox<T> {
 impl<T> Deref for MyBox<T> {
     type Target = T;
 
+    // Rust substitutes the * operator
+    // with a call to the deref method
     fn deref(&self) -> &Self::Target {
-        &self.0
+        &self.0 // 0 is T, the 1st & only value
     }
 }
 
