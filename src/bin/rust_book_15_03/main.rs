@@ -18,8 +18,14 @@ fn main() {
         data: String::from("my STUFF"),
     };
     let csp_2 = CustomSmartPointer {
-        data: String::from("my other STUFF"),
+        data: String::from("other STUFF"),
     };
 
+    println!("CustomSmartPointer created!");
+    csp.drop();
+    // consider using `drop` function
+    // |
+    // 25 -     csp.drop();
+    // 25 +     drop(csp);
     println!("CustomSmartPointer created!");
 }
