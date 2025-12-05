@@ -4,7 +4,10 @@
 use std::ops::Deref;
 
 fn main() {
-
+    let string = MyBox::new(
+        String::from("Rusty")  
+    );
+    hello(&string);
 }
 
 // Implicit Deref Coercions with Functions and Methods
