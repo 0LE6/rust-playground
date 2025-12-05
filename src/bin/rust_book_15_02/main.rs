@@ -15,7 +15,6 @@ fn hello(name: &str) {
     println!("Hello, {name} !");
 }
 
-
 // Defining Our Own Smart Pointer
 struct MyBox<T>(T);
 
