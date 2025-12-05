@@ -29,4 +29,10 @@ fn main() {
     // 25 +     drop(csp);
     drop(csp);
     println!("CustomSmartPointer created!");
+
+    // The text Dropping CustomSmartPointer with data 
+    // `my STUFF` is printed between the CustomSmartPointer 
+    // created. and CustomSmartPointer dropped before the 
+    // end of main. text, showing that the drop method 
+    // code is called to drop c at that point.
 }
