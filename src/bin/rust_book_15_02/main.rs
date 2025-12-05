@@ -9,3 +9,12 @@ fn main() {
     assert_eq!(5, x);
     assert_eq!(5, *y);
 }
+
+// Defining Our Own Smart Pointer
+struct MyBox<T>(T);
+
+impl<T> MyBox<T> {
+    fn new(x: T) -> MyBox<T> {
+        MyBox(x)
+    }
+}
