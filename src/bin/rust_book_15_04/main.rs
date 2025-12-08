@@ -53,6 +53,11 @@ fn main() {
         "count after c goes out of scope = {}",
         Rc::strong_count(&a)
     );
+
+    // Using Rc<T> allows a single value 
+    // to have multiple owners, and the 
+    // count ensures that the value remains 
+    // valid as long as any of the owners still exist.
 }
 
 enum List {
