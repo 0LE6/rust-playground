@@ -15,6 +15,12 @@ fn main() {
     );
     let b = Cons(3, Rc::clone(&a));
     let c = Cons(4, Rc::clone(&a));
+
+    // Rc::clone doesn’t make a deep copy
+    // of all the data like most types’ 
+    // implementations of clone do, it only 
+    // increments the reference count,
+    // which doesn’t take much time.
 }
 
 enum List {
