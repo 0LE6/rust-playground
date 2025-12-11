@@ -18,5 +18,6 @@ even when the RefCell<T> is immutable.
 */
 
 fn main() {
-    
+   let x = 5;
+   let y = &mut x;
 }
