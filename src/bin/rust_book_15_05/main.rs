@@ -17,9 +17,35 @@ mutate the value inside the RefCell<T>
 even when the RefCell<T> is immutable.
 */
 
+use std::{cell::RefCell, rc::Rc};
+use crate::List::{Cons, Nil};
+
 fn main() {
-   // let mut x = 5;
-   // let y = &mut x;
+    let value = Rc::new(RefCell::new(5));
+
+    let a = Rc::new(
+        Cons(Rc::clone(&value), Rc::new(Nil))
+    );
+
+    let b = Cons(
+        Rc::new(RefCell::new(3)), Rc::clone(&a)
+    );
+
+    let c = Cons(
+        Rc::new(RefCell::new(4)), Rc::clone(&a)
+    );
+
+    *value.borrow_mut() += 10;
+
+    println!("a after = {a:?}");
+    println!("b after = {b:?}");
+    println!("c after = {c:?}");
+}
+
+#[derive(Debug)]
+enum List {
+    Cons(Rc<RefCell<i32>>, Rc<List>),
+    Nil,
 }
 
 pub trait Messenger {
@@ -91,6 +117,7 @@ mod tests {
 
     impl Messenger for MockMessenger {
         fn send(&self, message: &str) {
+            // Correct form
             // self.sent_messages
             //     .borrow_mut()
             //     .push(String::from(message));
