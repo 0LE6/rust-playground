@@ -40,6 +40,9 @@ fn main() {
     println!("a after = {a:?}");
     println!("b after = {b:?}");
     println!("c after = {c:?}");
+
+    // lists b and c can both refer to a
+
 }
 
 #[derive(Debug)]
