@@ -91,9 +91,21 @@ mod tests {
 
     impl Messenger for MockMessenger {
         fn send(&self, message: &str) {
-            self.sent_messages
-                .borrow_mut()
-                .push(String::from(message));
+            // self.sent_messages
+            //     .borrow_mut()
+            //     .push(String::from(message));
+            
+            // deliberately trying to create two
+            // mutable borrows active for the same 
+            // scope to illustrate that RefCell<T> 
+            // prevents us from doing this at runtime.
+            let mut one_borrow = 
+                self.sent_messages.borrow_mut();
+            let mut two_borrow = 
+                self.sent_messages.borrow_mut();
+
+            one_borrow.push(String::from(message));
+            two_borrow.push(String::from(message));
         }
     }
 
