@@ -1,6 +1,7 @@
-// Reference Cycles Can Leak Memory
+/// Reference Cycles Can Leak Memory
 
 use std::{cell::RefCell, rc::Rc};
+use crate::List::{Cons, Nil};
 
 #[derive(Debug)]
 enum List {
@@ -11,7 +12,7 @@ enum List {
 impl List {
     fn tail(
         &self
-    ) -> Option<&RefCell<Rc<List>>>{
+    ) -> Option<&RefCell<Rc<List>>> {
         match self {
             Cons(_, item) => Some(item),
             Nil => None,
