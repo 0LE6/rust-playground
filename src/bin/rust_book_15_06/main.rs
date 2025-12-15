@@ -51,8 +51,16 @@ fn main() {
         b.tail()
     );
 
-    if let Some(link) = a.tail(){
+    if let Some(link) = a.tail() {
+    println!(
+        "1 ----- = {}",
+        Rc::strong_count(&a)
+    );
         *link.borrow_mut() = Rc::clone(&b);
+    println!(
+        "2 ----- = {}",
+        Rc::strong_count(&a)
+    );
     }
 
     println!(
