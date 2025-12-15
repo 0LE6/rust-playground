@@ -1,6 +1,6 @@
 /// Reference Cycles Can Leak Memory
 
-use std::{cell::RefCell, rc::Rc};
+use std::{cell::RefCell, rc::{Rc, Weak}};
 use crate::List::{Cons, Nil};
 
 #[derive(Debug)]
@@ -88,10 +88,15 @@ fn main() {
         children: RefCell::new(vec![Rc::clone(&leaf)]),
     });
 
+    // the Node in leaf now has two owners: 
+    // leaf and branch
+
+
 }
 
 #[derive(Debug)]
 struct Node {
     value: i32,
+    parent: RefCell<Weak<Node>,
     children: RefCell<Vec<Rc<Node>>>,
 }
