@@ -28,11 +28,20 @@ fn main() {
 
     let v = vec![1, 2, 3];
 
-    let handle = thread::spawn(|| {
+    // By adding the move keyword before the
+    // closure, we force the closure to take 
+    // ownership of the values it’s using rather
+    // than allowing Rust to infer that it 
+    // should borrow the values.
+    let handle = thread::spawn(move || {
         println!("Here's a vector: {v:?}");
     });
 
-    drop(v);
+    // drop(v);
+    // If Rust allowed us to run this code, 
+    // there’s a possibility that the spawned 
+    // thread would be immediately put in 
+    // the background without running at all. 
 
     handle.join().unwrap();
 
