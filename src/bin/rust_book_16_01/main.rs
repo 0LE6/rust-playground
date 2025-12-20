@@ -16,6 +16,11 @@ fn main() {
         println!("hi number {i} from the main thread!");
         thread::sleep(Duration::from_secs(1));
     }
-    
-    handle.join().unwrap();
+
+    // join makes sure the spawned thread 
+    // finishes before main exits.   
+    handle.join().unwrap(); // JoinHandle<()>
+    // main thread waits because of the
+    // call to handle.join() and does not 
+    // end until the spawned thread is finished.
 }
