@@ -37,7 +37,10 @@ fn main() {
         println!("Here's a vector: {v:?}");
     });
 
-    // drop(v);
+    // we would move v into the closure’s 
+    // environment, and we could no longer call 
+    // drop on it in the main thread. 
+    /// drop(v);
     // If Rust allowed us to run this code, 
     // there’s a possibility that the spawned 
     // thread would be immediately put in 
