@@ -8,6 +8,7 @@ fn main() {
     thread::spawn(move || {
         let val = String::from("Hi");
         tx.send(val).unwrap();
+        println!("val is {val}");
     });
     
     let received = rx.recv().unwrap();
