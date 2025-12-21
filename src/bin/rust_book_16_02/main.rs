@@ -9,6 +9,8 @@ fn main() {
         let val = String::from("Hi");
         tx.send(val).unwrap();
     });
-
+    
+    let received = rx.recv().unwrap();
+    println!("Got: {received}");
 }
 
