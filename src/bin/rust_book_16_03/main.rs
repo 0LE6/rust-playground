@@ -1,6 +1,6 @@
 // Shared-State Concurrency
 
-use std::{sync::Mutex, thread};
+use std::{rc::Rc, sync::Mutex, thread};
 
 fn main() {
     // let m = Mutex::new(5);
@@ -12,10 +12,11 @@ fn main() {
     //
     // println!("m = {m:?}");
 
-    let counter = Mutex::new(0);
+    let counter = Rc::new(Mutex::new(0));
     let mut handles = vec![];
 
     for _ in 1..10 {
+        let counter = Rc::clone(&counter);
         let handle = thread::spawn(
             move || {
                 let mut num = counter
