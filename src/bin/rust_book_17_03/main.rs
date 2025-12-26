@@ -53,6 +53,13 @@ fn main() {
     });
 }
 
+async fn timeout<F: Future>(
+    future_to_try: F,
+    max_time: Duration
+) -> Result<F::Output, Duration> {
+    
+}
+
 fn slow(name: &str, ms: u64) {
     thread::sleep(
         Duration::from_millis(ms)
