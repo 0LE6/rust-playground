@@ -4,7 +4,7 @@ use std::time::Duration;
 
 fn main() {
     trpl::block_on(async {
-        trpl::spawn_task(async {
+        let handle = trpl::spawn_task(async {
             for i in 1..10 {
                 println!(
                     "Hi number {i} from the 1st task!"
@@ -23,5 +23,7 @@ fn main() {
                 Duration::from_millis(500)
             ).await
         }
+
+        handle.await.unwrap();
     });
 }
