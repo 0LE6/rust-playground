@@ -30,10 +30,28 @@ fn main() {
 
         let (tx, mut rx) = trpl::channel();
 
-        let val = String::from("hi");
-        tx.send(val).unwrap();
+        // let val = String::from("hi");
+        // tx.send(val).unwrap();
+        //
+        // let received = rx.recv().await.unwrap();
+        // println!("received '{received}'");
 
-        let received = rx.recv().await.unwrap();
-        println!("received '{received}'");
+        let vals = vec![
+            String::from("hi"),
+            String::from("from"),
+            String::from("the"),
+            String::from("future"),
+        ];
+
+        for val in vals {
+           tx.send(val).unwrap();
+           trpl::sleep(
+               Duration::from_millis(500)
+           ).await
+        }
+
+        while let Some(value) = rx.recv().await {
+            println!("received '{value}'");
+        }
     });
 }
