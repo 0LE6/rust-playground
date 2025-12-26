@@ -36,7 +36,8 @@ fn main() {
         // let received = rx.recv().await.unwrap();
         // println!("received '{received}'");
     
-        let tx_fut = async move {
+        let tx1 = tx.clone();
+        let tx1_fut = async move {
             let vals = vec![
                 String::from("hi"),
                 String::from("from"),
@@ -45,7 +46,7 @@ fn main() {
             ];
 
             for val in vals {
-               tx.send(val).unwrap();
+               tx1.send(val).unwrap();
                trpl::sleep(
                    Duration::from_millis(500)
                ).await;
@@ -57,7 +58,23 @@ fn main() {
                 println!("received '{value}'");
             }
         };
+        
+        let tx_fut = async move {
+            let vals = vec![
+                String::from("more"),
+                String::from("messages"),
+                String::from("for"),
+                String::from("you"),
+            ];
 
-        trpl::join(tx_fut, rx_fut).await;
+            for val in vals {
+               tx.send(val).unwrap();
+               trpl::sleep(
+                   Duration::from_millis(500)
+               ).await;
+            }
+        };
+
+        trpl::join!(tx1_fut, tx_fut, rx_fut);
     });
 }
