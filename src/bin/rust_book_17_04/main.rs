@@ -1,4 +1,5 @@
 // Streams: Futures in Sequence
+use trpl::StreamExt;
 
 fn main() {
     trpl::block_on(async {
