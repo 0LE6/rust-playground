@@ -1,6 +1,7 @@
 // A Closer Look at the Traits for Async
 
 use std::time::Duration;
+use std::pin::{Pin, pin};
 
 fn main() {
     trpl::block_on(async {
@@ -37,7 +38,7 @@ fn main() {
         // println!("received '{received}'");
     
         let tx1 = tx.clone();
-        let tx1_fut = async move {
+        let tx1_fut = pin!(async move {
             let vals = vec![
                 String::from("hi"),
                 String::from("from"),
@@ -51,15 +52,15 @@ fn main() {
                    Duration::from_millis(500)
                ).await;
             }
-        };
+        });
 
-        let rx_fut = async {
+        let rx_fut = pin!(async {
             while let Some(value) = rx.recv().await {
                 println!("received '{value}'");
             }
-        };
+        });
         
-        let tx_fut = async move {
+        let tx_fut = pin!(async move {
             let vals = vec![
                 String::from("more"),
                 String::from("messages"),
@@ -73,15 +74,11 @@ fn main() {
                    Duration::from_millis(500)
                ).await;
             }
-        };
+        });
         
-        let futures: Vec<Box<dyn Future<Output = ()>>> =
-            vec![
-                Box::new(tx1_fut), 
-                Box::new(rx_fut),
-                Box::new(tx_fut)
-
-            ];
+        let futures: 
+            Vec<Pin<&mut dyn Future<Output = ()>>> =
+            vec![tx1_fut, rx_fut, tx_fut];
 
         trpl::join_all(futures);
     });
