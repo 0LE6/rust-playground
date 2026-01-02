@@ -80,7 +80,7 @@ fn main() {
             Vec<Pin<&mut dyn Future<Output = ()>>> =
             vec![tx1_fut, rx_fut, tx_fut];
 
-        trpl::join_all(futures);
+        trpl::join_all(futures).await;
     });
 
 }
