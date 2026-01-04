@@ -1,7 +1,24 @@
 // Characteristics of OOP
 
 fn main() {
-     
+    let mut coll = AveragedCollection {
+        list: vec![],
+        average: 0.0,
+    }; 
+    
+    coll.print_collection();
+
+    coll.add(69);
+
+    coll.print_collection();
+
+    coll.add(100);
+
+    coll.print_collection();
+
+    coll.remove();
+
+    coll.print_collection();
 }
 
 pub struct AveragedCollection {
@@ -29,9 +46,18 @@ impl AveragedCollection {
         self.average        
     }
 
+    pub fn print_collection(&self) {
+        println!(
+            "{:?} \nAverage: {:?}\n---------",
+            self.list,
+            self.average,
+        );
+    }
+
     fn update_average(&mut self) {
         let total: i32 = self.list.iter().sum();
         self.average 
             = total as f64 / self.list.len() as f64;
     }
+
 }
