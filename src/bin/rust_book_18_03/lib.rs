@@ -34,6 +34,16 @@ trait State {
     }
 }
 
+struct Draft {}
+
+impl State for Draft {
+    fn request_review(
+            self: Box<Self>
+        ) -> Box<dyn State> {
+        Box::new(PendingReview {})
+    }
+}
+
 struct PendingReview {}
 
 impl State for PendingReview {
@@ -43,7 +53,3 @@ impl State for PendingReview {
         self
     }
 }
-
-struct Draft {}
-
-impl State for Draft {}
