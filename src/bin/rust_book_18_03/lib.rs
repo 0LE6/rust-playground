@@ -16,7 +16,7 @@ impl Post {
     }
 
     pub fn content(&self) -> &str {
-        "oi"
+        self.state.as_ref().unwrap().content(self)
     }
 
     pub fn request_review(&mut self) {
