@@ -16,6 +16,8 @@ impl Post {
     }
 
     pub fn content(&self) -> &str {
+        // when we call as_ref, an 
+        // Option<&Box<dyn State>> is returned
         self.state.as_ref().unwrap().content(self)
     }
 
