@@ -65,7 +65,7 @@ impl State for PendingReview {
     }
     
     fn approve(self: Box<Self>) -> Box<dyn State> {
-        self
+        Box::new(Published {})
     }
 }
 
