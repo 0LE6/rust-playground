@@ -39,8 +39,15 @@ fn main() {
     // for (index, value) in v.iter().enumerate() {
     //     println!("{value} is at index {index}"); 
     // }
+
+    let point: (i32, i32) = (3, 5);
+    print_coordinates(&point);
 }
 
 fn foo(x: i32) {
     
+}
+
+fn print_coordinates(&(x, y): &(i32, i32)) {
+    println!("Current location: ({x}, {y})");
 }
