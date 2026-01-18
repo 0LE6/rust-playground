@@ -34,9 +34,13 @@ fn main() {
     //     println!("{value}");
     // }
 
-    let v = vec!['a', 'b', 'c'];
+    // let v = vec!['a', 'b', 'c'];
+    //
+    // for (index, value) in v.iter().enumerate() {
+    //     println!("{value} is at index {index}"); 
+    // }
+}
 
-    for (index, value) in v.iter().enumerate() {
-        println!("{value} is at index {index}"); 
-    }
+fn foo(x: i32) {
+    
 }
