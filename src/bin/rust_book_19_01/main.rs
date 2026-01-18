@@ -1,7 +1,7 @@
 // All the Places Patterns Can Be Used
 
 fn main() {
-    let fav_color: Option<&str> = None;
+    let fav_color: Option<&str> = Some("banana");
 
     let is_tuesday: bool = false;
 
