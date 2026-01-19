@@ -23,10 +23,19 @@ fn main() {
     // }
 
     // Matching Ranges of Values with ..=
-    let x = 5;
+    // let x = 5;
+    //
+    // match x {
+    //     1..=5 => println!("one through five"),
+    //     _ => println!("something else"),
+    // }
+
+    // example using ranges of char Values
+    let x = 'c';
 
     match x {
-        1..=5 => println!("one through five"),
+        'a'..='j' => println!("early ASCII letter"),
+        'k'..='z' => println!("late ASCII letter"),
         _ => println!("something else"),
     }
 }
