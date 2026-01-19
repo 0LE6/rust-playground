@@ -1,6 +1,7 @@
 // Pattern Syntax
 
 fn main() {
+    // Matching Named Variables
     // let x = Some(5);
     // let y = 10;
     //
@@ -12,11 +13,20 @@ fn main() {
     //
     // println!("at the end: x = {x:?}, y = {y}");
 
-    let x = 1;
+    // Matching Multiple Patterns
+    // let x = 1;
+    //
+    // match x {
+    //     1 | 2 => println!("one or two"),
+    //     3 => println!("three"),
+    //     _ => println!("anything"),
+    // }
+
+    // Matching Ranges of Values with ..=
+    let x = 5;
 
     match x {
-        1 | 2 => println!("one or two"),
-        3 => println!("three"),
-        _ => println!("anything"),
+        1..=5 => println!("one through five"),
+        _ => println!("something else"),
     }
 }
