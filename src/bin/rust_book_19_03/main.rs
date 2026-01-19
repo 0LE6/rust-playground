@@ -42,10 +42,14 @@ fn main() {
     // Destructuring to Break Apart Values
     let p = Point { x: 10, y: 7};
 
-    let Point { x: a, y: b } = p;
+    // let Point { x: a, y: b } = p;
+    //
+    // assert_eq!(0, a); // FALSE
+    // assert_eq!(7, b); // TRUE
 
-    assert_eq!(0, a); // FALSE
-    assert_eq!(7, b); // TRUE
+    let Point { x, y } = p;
+    assert_eq!(0, x); // FALSE
+    assert_eq!(7, y); // TRUE
 }
 
 struct Point {
