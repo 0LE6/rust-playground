@@ -31,11 +31,24 @@ fn main() {
     // }
 
     // example using ranges of char Values
-    let x = 'c';
+    // let x = 'c';
+    //
+    // match x {
+    //     'a'..='j' => println!("early ASCII letter"),
+    //     'k'..='z' => println!("late ASCII letter"),
+    //     _ => println!("something else"),
+    // }
 
-    match x {
-        'a'..='j' => println!("early ASCII letter"),
-        'k'..='z' => println!("late ASCII letter"),
-        _ => println!("something else"),
-    }
+    // Destructuring to Break Apart Values
+    let p = Point { x: 10, y: 7};
+
+    let Point { x: a, y: b } = p;
+
+    assert_eq!(0, a); // FALSE
+    assert_eq!(7, b); // TRUE
+}
+
+struct Point {
+    x: i32,
+    y: i32,
 }
