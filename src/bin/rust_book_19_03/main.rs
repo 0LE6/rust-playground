@@ -51,19 +51,50 @@ fn main() {
     // assert_eq!(0, x); // FALSE
     // assert_eq!(7, y); // TRUE
 
-    let p = Point { x: 0, y: 7};
+    // let p = Point { x: 0, y: 7};
+    //
+    // match p {
+    //     Point { x, y: 0 } => {
+    //         println!("On the x axis at {x}");
+    //     },
+    //     Point { x: 0, y } => {
+    //         println!("On the y axis at {y}");
+    //     },
+    //     Point { x, y } => {
+    //         println!("On neither axis: ({x}, {y})");
+    //     },
+    // }
 
-    match p {
-        Point { x, y: 0 } => {
-            println!("On the x axis at {x}");
-        },
-        Point { x: 0, y } => {
-            println!("On the y axis at {y}");
-        },
-        Point { x, y } => {
-            println!("On neither axis: ({x}, {y})");
-        },
+    let msg = Message::ChangeColor(0, 160, 255);
+
+    match msg {
+        Message::Quit => {
+            println!(
+                "Quit variant has no data to destruct"
+            );
+        }
+        Message::Move { x, y } => {
+            println!(
+                "Move in the x dir {x} & y dir {y}"
+            );
+        }
+        Message::Write(text) => {
+            println!("Text message: {text}");
+        }
+        Message::ChangeColor(r, g, b) => {
+            println!(
+                "Change color to R {r}, G {g} & B {b}"
+            );
+        }
     }
+
+}
+
+enum Message {
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(i32, i32, i32),
 }
 
 struct Point {
