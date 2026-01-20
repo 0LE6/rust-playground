@@ -40,16 +40,30 @@ fn main() {
     // }
 
     // Destructuring to Break Apart Values
-    let p = Point { x: 10, y: 7};
+    // let p = Point { x: 10, y: 7};
 
     // let Point { x: a, y: b } = p;
     //
     // assert_eq!(0, a); // FALSE
     // assert_eq!(7, b); // TRUE
 
-    let Point { x, y } = p;
-    assert_eq!(0, x); // FALSE
-    assert_eq!(7, y); // TRUE
+    // let Point { x, y } = p;
+    // assert_eq!(0, x); // FALSE
+    // assert_eq!(7, y); // TRUE
+
+    let p = Point { x: 0, y: 7};
+
+    match p {
+        Point { x, y: 0 } => {
+            println!("On the x axis at {x}");
+        },
+        Point { x: 0, y } => {
+            println!("On the y axis at {y}");
+        },
+        Point { x, y } => {
+            println!("On neither axis: ({x}, {y})");
+        },
+    }
 }
 
 struct Point {
