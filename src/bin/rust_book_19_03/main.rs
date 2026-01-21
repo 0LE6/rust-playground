@@ -88,30 +88,37 @@ fn main() {
     //     }
     // }
 
-    // 19-16
     // let msg = Message::ChangeColor(
     //     Color::Hsv(0, 160, 255)
     // );
 
-    let msg = Message::ChangeColor(
-        Color::Rgb(69, 100, 220)
+    // let msg = Message::ChangeColor(
+    //     Color::Rgb(69, 100, 220)
+    // );
+    //
+    //
+    // match msg {
+    //     Message::ChangeColor(Color::Rgb(r, g, b)) => {
+    //         println!(
+    //             "Change color to R {r}, G {g} & B {b}"
+    //         );
+    //     }
+    //     Message::ChangeColor(Color::Hsv(h, s, v)) => {
+    //         println!(
+    //             "Change color to H {h}, S {s} & V {v}"
+    //         );
+    //     }
+    //     _ => (),
+    // }
+
+    foo(3, 4);
+
+}
+
+fn foo(_: i32, y: i32) {
+    println!(
+        "This code only uses the y parameters: {y}"
     );
-
-
-    match msg {
-        Message::ChangeColor(Color::Rgb(r, g, b)) => {
-            println!(
-                "Change color to R {r}, G {g} & B {b}"
-            );
-        }
-        Message::ChangeColor(Color::Hsv(h, s, v)) => {
-            println!(
-                "Change color to H {h}, S {s} & V {v}"
-            );
-        }
-        _ => (),
-    }
-
 }
 
 enum Color {
