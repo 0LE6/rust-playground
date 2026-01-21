@@ -65,36 +65,65 @@ fn main() {
     //     },
     // }
 
-    let msg = Message::ChangeColor(0, 160, 255);
+    // let msg = Message::ChangeColor(0, 160, 255);
+    //
+    // match msg {
+    //     Message::Quit => {
+    //         println!(
+    //             "Quit variant has no data to destruct"
+    //         );
+    //     }
+    //     Message::Move { x, y } => {
+    //         println!(
+    //             "Move in the x dir {x} & y dir {y}"
+    //         );
+    //     }
+    //     Message::Write(text) => {
+    //         println!("Text message: {text}");
+    //     }
+    //     Message::ChangeColor(r, g, b) => {
+    //         println!(
+    //             "Change color to R {r}, G {g} & B {b}"
+    //         );
+    //     }
+    // }
+
+    // 19-16
+    // let msg = Message::ChangeColor(
+    //     Color::Hsv(0, 160, 255)
+    // );
+
+    let msg = Message::ChangeColor(
+        Color::Rgb(69, 100, 220)
+    );
+
 
     match msg {
-        Message::Quit => {
-            println!(
-                "Quit variant has no data to destruct"
-            );
-        }
-        Message::Move { x, y } => {
-            println!(
-                "Move in the x dir {x} & y dir {y}"
-            );
-        }
-        Message::Write(text) => {
-            println!("Text message: {text}");
-        }
-        Message::ChangeColor(r, g, b) => {
+        Message::ChangeColor(Color::Rgb(r, g, b)) => {
             println!(
                 "Change color to R {r}, G {g} & B {b}"
             );
         }
+        Message::ChangeColor(Color::Hsv(h, s, v)) => {
+            println!(
+                "Change color to H {h}, S {s} & V {v}"
+            );
+        }
+        _ => (),
     }
 
+}
+
+enum Color {
+    Rgb(i32, i32, i32),    
+    Hsv(i32, i32, i32),    
 }
 
 enum Message {
     Quit,
     Move { x: i32, y: i32 },
     Write(String),
-    ChangeColor(i32, i32, i32),
+    ChangeColor(Color),
 }
 
 struct Point {
