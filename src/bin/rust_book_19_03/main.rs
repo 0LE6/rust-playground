@@ -150,13 +150,25 @@ fn main() {
     // }
 
 
-    let num = Some(4);
+    // let num = Some(4);
+    //
+    // match num {
+    //     Some(x) if x % 2 == 0 => println!("Number {x} is even"),
+    //     Some(x) => println!("Number {x} is odd"),
+    //     None => ()
+    // }
 
-    match num {
-        Some(x) if x % 2 == 0 => println!("Number {x} is even"),
-        Some(x) => println!("Number {x} is odd"),
-        None => ()
+    // let x = Some(5);
+    let x = Some(10);
+    let y = 10;
+
+    match x {
+        Some(50) => println!("Got 50"),
+        Some(n) if n == y => println!("Matched, n = {n}"),
+        _ => println!("Default case, x = {x:?}"),
     }
+
+    println!("at the end: x = {x:?} & y = {y}");
 }
 
 fn foo(_: i32, y: i32) {
