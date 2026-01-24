@@ -170,15 +170,30 @@ fn main() {
     //
     // println!("at the end: x = {x:?} & y = {y}");
 
-    let x = 4;
+    // let x = 4;
     // let y = false;
-    let y = true;
+    // let y = true;
 
-    match x {
-        4 | 5 | 6 if y => println!("YES"),
-        _ => println!("NO"),
+    // match x {
+    //     4 | 5 | 6 if y => println!("YES"),
+    //     _ => println!("NO"),
+    // }
+    
+    let msg = Message_2::Hello { id: 11 };
+
+    match msg {
+        Message_2::Hello { id: id @ 3..=7 } => {
+            println!("Found an id in range: {id}")
+        }
+        Message_2::Hello { id: 10..=12 } => {
+            println!("Found and id in another range")
+        }
+        Message_2::Hello { id } => println!("Found some other id: {id}"),
     }
+}
 
+enum Message_2 {
+    Hello { id: i32 },
 }
 
 fn foo(_: i32, y: i32) {
