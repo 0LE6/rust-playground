@@ -141,12 +141,21 @@ fn main() {
     //     Point { x, .. } => println!("x is {x}"),        
     // }
 
-    let numbers = (2, 4, 8, 16, 32);
+    // let numbers = (2, 4, 8, 16, 32);
+    //
+    // match numbers {
+    //     (first, .., last) => {
+    //         println!("Some numbers: {first}, {last}");
+    //     }        
+    // }
 
-    match numbers {
-        (first, .., last) => {
-            println!("Some numbers: {first}, {last}");
-        }        
+
+    let num = Some(4);
+
+    match num {
+        Some(x) if x % 2 == 0 => println!("Number {x} is even"),
+        Some(x) => println!("Number {x} is odd"),
+        None => ()
     }
 }
 
