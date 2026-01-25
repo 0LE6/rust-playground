@@ -6,4 +6,7 @@ fn main() {
     let r1 = &raw const num;
     let r2 = &raw mut num;
 
+    unsafe {
+        println!("{} - {}", *r1, *r2);
+    }
 }
