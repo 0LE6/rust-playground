@@ -27,4 +27,16 @@ fn main() {
     assert_eq!(b, &mut [4, 5, 6]);
 }
 
+fn split_at_mut(
+    values: &mut [i32],
+    mid: usize
+) -> (&mut [i32], &mut [i32]) {
+
+    let len = values.len();
+
+    assert!(mid <= len);
+
+    (&mut values[..mid], &mut values)
+}
+
 unsafe fn dangerous() { }
