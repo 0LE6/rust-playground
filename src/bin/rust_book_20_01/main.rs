@@ -9,4 +9,7 @@ fn main() {
     unsafe {
         println!("{} - {}", *r1, *r2);
     }
+
+    let address = 0x012345usize;
+    let r = address as *const i32;
 }
