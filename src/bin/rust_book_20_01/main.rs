@@ -36,17 +36,26 @@ fn main() {
     //         slice::from_raw_parts_mut(r, 10000)
     //     };
 
-    unsafe {
-        println!(
-            "Absolute value of -3 accor. to C: {}",
-            abs(-3)
-        );
-    }
+    // unsafe {
+    //     println!(
+    //         "Absolute value of -3 accor. to C: {}",
+    //         abs(-3)
+    //     );
+    // }
+
+    // declaring abs() as safe we no longer
+    // need to use unsafe
+    println!(
+        "Absolute value of -3 accor. to C: {}",
+        abs(-3)
+    );
+
 
 }
 
 unsafe extern "C" {
-    fn abs(input: i32) -> i32;
+    // fn abs(input: i32) -> i32;
+    safe fn abs(input: i32) -> i32;
 }
 
 fn split_at_mut(
