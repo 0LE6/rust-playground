@@ -2,6 +2,8 @@
 
 use std::slice;
 
+static HELLO_WORLD: &str = "Hello, world!";
+
 fn main() {
     // let mut num = 5;
     //
@@ -45,11 +47,12 @@ fn main() {
 
     // declaring abs() as safe we no longer
     // need to use unsafe
-    println!(
-        "Absolute value of -3 accor. to C: {}",
-        abs(-3)
-    );
+    // println!(
+    //     "Absolute value of -3 accor. to C: {}",
+    //     abs(-3)
+    // );
 
+    println!("value is: {HELLO_WORLD}");
 
 }
 
