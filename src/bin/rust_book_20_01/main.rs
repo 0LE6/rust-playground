@@ -28,14 +28,25 @@ fn main() {
     // assert_eq!(a, &mut [1, 2, 3]);
     // assert_eq!(b, &mut [4, 5, 6]);
 
-    let address = 0x012345usize;
-    let r = address as *mut i32;
-    
-    let values: &[i32] =
-        unsafe {
-            slice::from_raw_parts_mut(r, 10000)
-        };
+    // let address = 0x012345usize;
+    // let r = address as *mut i32;
+    // 
+    // let values: &[i32] =
+    //     unsafe {
+    //         slice::from_raw_parts_mut(r, 10000)
+    //     };
 
+    unsafe {
+        println!(
+            "Absolute value of -3 accor. to C: {}",
+            abs(-3)
+        );
+    }
+
+}
+
+unsafe extern "C" {
+    fn abs(input: i32) -> i32;
 }
 
 fn split_at_mut(
