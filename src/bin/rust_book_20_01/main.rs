@@ -3,6 +3,7 @@
 use std::slice;
 
 static HELLO_WORLD: &str = "Hello, world!";
+static mut COUNTER: u32 = 0;
 
 fn main() {
     // let mut num = 5;
@@ -52,8 +53,19 @@ fn main() {
     //     abs(-3)
     // );
 
-    println!("value is: {HELLO_WORLD}");
+    // println!("value is: {HELLO_WORLD}");
+    
+    unsafe {
+        add_to_counter(3);
+        println!("COUNTER: {}", *(&raw const COUNTER));
+    }
 
+}
+
+unsafe fn add_to_counter(inc: u32) {
+    unsafe {
+        COUNTER += inc;
+    }
 }
 
 unsafe extern "C" {
