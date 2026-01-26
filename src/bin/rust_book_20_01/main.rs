@@ -63,6 +63,14 @@ fn main() {
 
 }
 
+unsafe trait Foo {
+    // Foo
+}
+
+unsafe impl Foo for i32 {
+    // impl
+}
+
 /// SAFETY: Calling this from more than a single thread at a time is undefined
 /// behavior, so you *must* guarantee you only call it from a single thread at
 /// a time.
