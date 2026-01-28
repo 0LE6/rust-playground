@@ -27,8 +27,14 @@ impl Iterator for Counter {
     }
 }
 
-pub trait Iterator {
-    type Item;
-
-    fn next(&mut self) -> Option<Self::Item>;
+// an hypothetical definition
+// of a trait using generics
+pub trait Iterator<T> {
+    fn next(&mut self) ->Option<T>;
 }
+
+// pub trait Iterator {
+//     type Item;
+//
+//     fn next(&mut self) -> Option<Self::Item>;
+// }
