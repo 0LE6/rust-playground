@@ -21,7 +21,10 @@ fn main() {
     */
 
     let person = Human;
+    Pilot::fly(&person);
+    Wizard::fly(&person);
     person.fly(); // *waving arms furiously*
+
 }
 
 trait Pilot {
