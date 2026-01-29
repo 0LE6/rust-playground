@@ -19,6 +19,9 @@ fn main() {
     left: Millimeters(4000)
     right: Millimeters(4001)
     */
+
+    let person = Human;
+    person.fly(); // *waving arms furiously*
 }
 
 trait Pilot {
