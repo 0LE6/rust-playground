@@ -25,8 +25,13 @@ fn main() {
     // Wizard::fly(&person);
     // person.fly(); // *waving arms furiously*
 
-    println!("A baby dog is called a {}", Dog::baby_name());
+    // prints Doggy, using the fn asociated to Dog
+    println!("A baby dog is called a {}", Dog::baby_name()); 
 
+    // to use the fn of Animal impl for Dog:
+    println!("A baby dog is called a {}", <Dog as Animal>::baby_name()); 
+    // now is prints "puppy"
+    // <Type as Trait>::function(receiver_if_method, next_arg, ...);
 }
 
 trait Animal {
