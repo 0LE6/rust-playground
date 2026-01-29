@@ -1,6 +1,6 @@
 /* Advanced Trais */
 
-use std::ops::Add;
+use std::{fmt, ops::Add};
 
 fn main() {
     // assert_eq!(
@@ -26,12 +26,27 @@ fn main() {
     // person.fly(); // *waving arms furiously*
 
     // prints Doggy, using the fn asociated to Dog
-    println!("A baby dog is called a {}", Dog::baby_name()); 
+    // println!("A baby dog is called a {}", Dog::baby_name()); 
 
     // to use the fn of Animal impl for Dog:
-    println!("A baby dog is called a {}", <Dog as Animal>::baby_name()); 
+    // println!("A baby dog is called a {}", <Dog as Animal>::baby_name()); 
     // now is prints "puppy"
     // <Type as Trait>::function(receiver_if_method, next_arg, ...);
+
+
+}
+
+trait OutlinePrint: fmt::Display {
+    fn outline_print(&self) {
+        let output = self.to_string();
+        let len = output.len();
+
+        println!("{}", "*".repeat(len + 4));
+        println!("*{}", " ".repeat(len + 2));
+        println!("* {output} *");
+        println!("{}", " ".repeat(len + 2));
+        println!("{}", "*".repeat(len + 4));
+    }
 }
 
 trait Animal {
@@ -94,11 +109,11 @@ impl Animal for Dog {
 // }
 //
 //
-// #[derive(Debug, Copy, Clone, PartialEq)]
-// struct Point {
-//     x: i32,
-//     y: i32,
-// }
+#[derive(Debug, Copy, Clone, PartialEq)]
+struct Point {
+    x: i32,
+    y: i32,
+}
 //
 // impl Add for Point {
 //     type Output = Point;    
