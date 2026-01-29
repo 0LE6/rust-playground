@@ -7,7 +7,33 @@ fn main() {
         Point { x: 1, y: 0 } + Point { x: 2, y: 3 },
         Point { x: 3, y: 3 }
     );
+
+    assert_eq!(
+        Millimeters( 2000) + Meters(2),
+        Millimeters(4000)
+    );
+
+    /* In a fail situation
+
+    assertion `left == right` failed
+    left: Millimeters(4000)
+    right: Millimeters(4001)
+    */
 }
+
+#[derive(Debug, Copy, Clone, PartialEq)]
+struct Millimeters(u32);
+#[derive(Debug, Copy, Clone, PartialEq)]
+struct Meters(u32);
+
+impl Add<Meters> for Millimeters {
+    type Output = Millimeters;
+
+    fn add(self, other: Meters) -> Millimeters {
+        Millimeters(self.0 + (other.0 * 1000))
+    }
+}
+
 
 #[derive(Debug, Copy, Clone, PartialEq)]
 struct Point {
