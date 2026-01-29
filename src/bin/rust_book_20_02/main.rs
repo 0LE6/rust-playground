@@ -21,6 +21,34 @@ fn main() {
     */
 }
 
+trait Pilot {
+    fn fly(&self);
+}
+
+trait Wizard {
+    fn fly(&self);
+}
+
+struct Human;
+
+impl Pilot for Human {
+    fn fly(&self) {
+        println!("This is your captain speaking."); 
+    }   
+}
+
+impl Wizard for Human {
+    fn fly(&self) {
+        println!("Fly, you fools!");
+    }   
+}
+
+impl Human {
+    fn fly(&self) {
+        println!("*waving arms furiously*");
+    }   
+}
+
 #[derive(Debug, Copy, Clone, PartialEq)]
 struct Millimeters(u32);
 #[derive(Debug, Copy, Clone, PartialEq)]
