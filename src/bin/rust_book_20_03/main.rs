@@ -15,4 +15,8 @@ fn main() {
     fn returns_long_type() -> Thunk {
         Box::new(|| ())        
     }
+
+    fn generica<T: ?Sized>(t: &T) {
+        // something        
+    }
 }
