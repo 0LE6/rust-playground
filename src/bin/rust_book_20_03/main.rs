@@ -1,15 +1,18 @@
 // Advanced Types
 
 fn main() {
+
+    type Thunk = 
+        Box<dyn Fn() + Send + 'static>;
     
-    let f: Box<dyn Fn() + Send + 'static> = 
+    let f: Thunk = 
         Box::new(|| println!("hi"));
 
-    fn take_long_type(f: Box<dyn Fn() + Send + 'static>) {
+    fn take_long_type(f: Thunk) {
         // something
     }
 
-    fn returns_long_type() -> Box<dyn Fn() + Send + 'static> {
+    fn returns_long_type() -> Thunk {
         Box::new(|| ())        
     }
 }
