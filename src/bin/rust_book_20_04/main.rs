@@ -9,7 +9,10 @@ fn main() {
     // let list_of_nums = vec![1, 2, 3];
     let list_of_strs: Vec<String> = list_of_nums
         .iter()
-        .map(|n| n.to_string())
+        // .map(|n| n.to_string())
+        .map(ToString::to_string)
+        // Fn(&T) -> U
+        // == |n: &T| n.to_string()
         .collect();
 
     println!("nums {:?}", list_of_nums);
