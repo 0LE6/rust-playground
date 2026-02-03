@@ -36,6 +36,7 @@ fn main() {
     //
     // println!("res: {}", res);
 
+    // WARN: trait object
     let handlers = vec![
         returns_closure(), 
         returns_initialized_closure(1)
@@ -45,16 +46,18 @@ fn main() {
         let output = handler(5);
         println!("{output}");
     }
+    // 6
+    // 6
 }
 
-fn returns_closure() -> impl Fn(i32) -> i32 {
-    |x| x + 1
+fn returns_closure() -> Box<dyn Fn(i32) -> i32> {
+    Box::new(|x| x + 1)
 }
 
 fn returns_initialized_closure(
     i: i32
-) -> impl Fn(i32) -> i32 {
-    move |x| x + i
+) -> Box<dyn Fn(i32) -> i32> {
+    Box::new(move |x| x + i)
 }
 
 // fn add_one(x: i32) -> i32 {
