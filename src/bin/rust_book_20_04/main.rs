@@ -5,20 +5,30 @@ fn main() {
     //
     // println!("The answer is: {ans}");
 
-    let list_of_nums: Vec<i32> = Vec::from([1, 2, 3]);
-    // let list_of_nums = vec![1, 2, 3];
-    let list_of_strs: Vec<String> = list_of_nums
-        .iter()
-        // .map(|n| n.to_string())
-        .map(ToString::to_string)
-        // Fn(&T) -> U
-        // == |n: &T| n.to_string()
+    // let list_of_nums: Vec<i32> = Vec::from([1, 2, 3]);
+    // // let list_of_nums = vec![1, 2, 3];
+    // let list_of_strs: Vec<String> = list_of_nums
+    //     .iter()
+    //     // .map(|n| n.to_string())
+    //     .map(ToString::to_string)
+    //     // Fn(&T) -> U
+    //     // == |n: &T| n.to_string()
+    //     .collect();
+    //
+    // println!("nums {:?}", list_of_nums);
+    // println!("strs {:?}", list_of_strs);
+
+    #[derive(Debug)]
+    enum Status {
+        Value(u32),
+        Stop,
+    }
+
+    let list_of_statuses: Vec<Status> = (0u32..20)
+        .map(Status::Value)
         .collect();
 
-    println!("nums {:?}", list_of_nums);
-    println!("strs {:?}", list_of_strs);
-
-
+    println!("list of statuses {:?}", list_of_statuses);
 }
 
 // fn add_one(x: i32) -> i32 {
