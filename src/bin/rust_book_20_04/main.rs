@@ -18,17 +18,28 @@ fn main() {
     // println!("nums {:?}", list_of_nums);
     // println!("strs {:?}", list_of_strs);
 
-    #[derive(Debug)]
-    enum Status {
-        Value(u32),
-        Stop,
-    }
+    // #[derive(Debug)]
+    // enum Status {
+    //     Value(u32),
+    //     Stop,
+    // }
+    //
+    // let list_of_statuses: Vec<Status> = (0u32..20)
+    //     .map(Status::Value)
+    //     .collect();
+    //
+    // println!("list of statuses {:?}", list_of_statuses);
 
-    let list_of_statuses: Vec<Status> = (0u32..20)
-        .map(Status::Value)
-        .collect();
+    // how call Returning Closures
+    let f = returns_closure();
+    let res = f(68);
 
-    println!("list of statuses {:?}", list_of_statuses);
+    println!("res: {}", res);
+    
+}
+
+fn returns_closure() -> impl Fn(i32) -> i32 {
+    |x| x + 1
 }
 
 // fn add_one(x: i32) -> i32 {
