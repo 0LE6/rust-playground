@@ -31,15 +31,30 @@ fn main() {
     // println!("list of statuses {:?}", list_of_statuses);
 
     // how call Returning Closures
-    let f = returns_closure();
-    let res = f(68);
+    // let f = returns_closure();
+    // let res = f(68);
+    //
+    // println!("res: {}", res);
 
-    println!("res: {}", res);
-    
+    let handlers = vec![
+        returns_closure(), 
+        returns_initialized_closure(1)
+    ];
+
+    for handler in handlers {
+        let output = handler(5);
+        println!("{output}");
+    }
 }
 
 fn returns_closure() -> impl Fn(i32) -> i32 {
     |x| x + 1
+}
+
+fn returns_initialized_closure(
+    i: i32
+) -> impl Fn(i32) -> i32 {
+    move |x| x + i
 }
 
 // fn add_one(x: i32) -> i32 {
