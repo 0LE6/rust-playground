@@ -1,0 +1,50 @@
+   0.023602450s  INFO prepare_target{force=false package_id=hello_macro v0.1.0 (/home/endos/projects/rust/rust-playground/hello_macro) target="hello_macro"}: cargo::core::compiler::fingerprint: fingerprint error for hello_macro v0.1.0 (/home/endos/projects/rust/rust-playground/hello_macro)/Check { test: false }/TargetInner { name: "hello_macro", doc: true, ..: with_path("/home/endos/projects/rust/rust-playground/hello_macro/src/main.rs", Edition2024) }
+   0.023642399s  INFO prepare_target{force=false package_id=hello_macro v0.1.0 (/home/endos/projects/rust/rust-playground/hello_macro) target="hello_macro"}: cargo::core::compiler::fingerprint:     err: failed to read `/home/endos/projects/rust/rust-playground/hello_macro/target/debug/.fingerprint/hello_macro-786e46433a3a5538/bin-hello_macro`
+
+Caused by:
+    No such file or directory (os error 2)
+
+Stack backtrace:
+   0: cargo_util::paths::read_bytes
+   1: cargo_util::paths::read
+   2: cargo::core::compiler::fingerprint::_compare_old_fingerprint
+   3: cargo::core::compiler::fingerprint::prepare_target
+   4: cargo::core::compiler::compile
+   5: <cargo::core::compiler::build_runner::BuildRunner>::compile
+   6: cargo::ops::cargo_compile::compile_ws
+   7: cargo::ops::cargo_compile::compile_with_exec
+   8: cargo::ops::cargo_compile::compile
+   9: cargo::commands::check::exec
+  10: <cargo::cli::Exec>::exec
+  11: cargo::main
+  12: std::sys::backtrace::__rust_begin_short_backtrace::<fn(), ()>
+  13: std::rt::lang_start::<()>::{closure#0}
+  14: core::ops::function::impls::<impl core::ops::function::FnOnce<A> for &F>::call_once
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/core/src/ops/function.rs:287:21
+  15: std::panicking::catch_unwind::do_call
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:590:40
+  16: std::panicking::catch_unwind
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:553:19
+  17: std::panic::catch_unwind
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panic.rs:359:14
+  18: std::rt::lang_start_internal::{{closure}}
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/rt.rs:175:24
+  19: std::panicking::catch_unwind::do_call
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:590:40
+  20: std::panicking::catch_unwind
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panicking.rs:553:19
+  21: std::panic::catch_unwind
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/panic.rs:359:14
+  22: std::rt::lang_start_internal
+             at /rustc/ed61e7d7e242494fb7057f2657300d9e77bb4fcb/library/std/src/rt.rs:171:5
+  23: main
+  24: <unknown>
+  25: __libc_start_main
+  26: <unknown>
+   0.037902112s  INFO prepare_target{force=false package_id=hello_macro v0.1.0 (/home/endos/projects/rust/rust-playground/hello_macro) target="hello_macro"}: cargo::core::compiler::fingerprint: stale: changed "/home/endos/projects/rust/rust-playground/hello_macro/src/main.rs"
+   0.037913367s  INFO prepare_target{force=false package_id=hello_macro v0.1.0 (/home/endos/projects/rust/rust-playground/hello_macro) target="hello_macro"}: cargo::core::compiler::fingerprint:           (vs) "/home/endos/projects/rust/rust-playground/hello_macro/target/debug/.fingerprint/hello_macro-ce2f701dc6c33a5f/dep-test-bin-hello_macro"
+   0.037919406s  INFO prepare_target{force=false package_id=hello_macro v0.1.0 (/home/endos/projects/rust/rust-playground/hello_macro) target="hello_macro"}: cargo::core::compiler::fingerprint:                FileTime { seconds: 1770409756, nanos: 578888374 } < FileTime { seconds: 1770409763, nanos: 57871159 }
+   0.037959070s  INFO prepare_target{force=false package_id=hello_macro v0.1.0 (/home/endos/projects/rust/rust-playground/hello_macro) target="hello_macro"}: cargo::core::compiler::fingerprint: fingerprint dirty for hello_macro v0.1.0 (/home/endos/projects/rust/rust-playground/hello_macro)/Check { test: true }/TargetInner { name: "hello_macro", doc: true, ..: with_path("/home/endos/projects/rust/rust-playground/hello_macro/src/main.rs", Edition2024) }
+   0.037975480s  INFO prepare_target{force=false package_id=hello_macro v0.1.0 (/home/endos/projects/rust/rust-playground/hello_macro) target="hello_macro"}: cargo::core::compiler::fingerprint:     dirty: FsStatusOutdated(StaleItem(ChangedFile { reference: "/home/endos/projects/rust/rust-playground/hello_macro/target/debug/.fingerprint/hello_macro-ce2f701dc6c33a5f/dep-test-bin-hello_macro", reference_mtime: FileTime { seconds: 1770409756, nanos: 578888374 }, stale: "/home/endos/projects/rust/rust-playground/hello_macro/src/main.rs", stale_mtime: FileTime { seconds: 1770409763, nanos: 57871159 } }))
+    Checking hello_macro v0.1.0 (/home/endos/projects/rust/rust-playground/hello_macro)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.08s
