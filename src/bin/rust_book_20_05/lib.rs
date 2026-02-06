@@ -17,3 +17,8 @@ macro_rules! vect {
 // pub fn some_name(input: TokenStream) -> TokenStream {
 //
 // }
+
+
+pub trait HelloMacro {
+    fn hello_macro();
+}
