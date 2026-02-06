@@ -1,4 +1,4 @@
-use proc_macro::{TokenStream};
+// use proc_macro::{TokenStream};
 
 #[macro_export]
 macro_rules! vect {
@@ -13,7 +13,7 @@ macro_rules! vect {
     };
 }
 
-#[some_attribute]
-pub fn some_name(input: TokenStream) -> TokenStream {
-    
-}
+// #[some_attribute]
+// pub fn some_name(input: TokenStream) -> TokenStream {
+//
+// }
