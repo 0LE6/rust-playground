@@ -27,10 +27,11 @@ fn handle_connection(
         .collect();
 
     let response = "HTTP/1.1 200 OK\r\n\r\n";
+    // let response = b"HTTP/1.1 200 OK\r\n\r\n"; 
 
     stream.write_all(response.as_bytes()).unwrap();
-
-    // println!("Request: {http_request:#?}");
+    // stream.write_all(response); 
+    // directly receiv bytes
 }
 
 
