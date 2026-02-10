@@ -30,7 +30,7 @@ fn handle_connection(
     // let response = b"HTTP/1.1 200 OK\r\n\r\n"; 
 
     stream.write_all(response.as_bytes()).unwrap();
-    // stream.write_all(response); 
+    // stream.write_all(response).unwrap(); 
     // directly receiv bytes
 }
 
