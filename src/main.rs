@@ -11,7 +11,6 @@ fn main() {
         let stream = stream.unwrap();
         
         handle_connection(stream);
-        // println!("Connection established!");
     }
 }
 
@@ -41,9 +40,6 @@ fn handle_connection(
 
     stream.write_all(response.as_bytes()).unwrap();
 }
-
-
-
 
 
 
