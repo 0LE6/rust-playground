@@ -25,33 +25,21 @@ fn handle_connection(
         .unwrap()
         .unwrap();
     
-    if request_line == "GET / HTTP/1.1" {
-        let status_line = "HTTP/1.1 200 OK\r\n";
-        let contents = 
-            fs::read_to_string("hello.html").unwrap();
-        let length = contents.len();
-
-        let response = format!(
-            "{status_line}Content-Length: {length}\r\n\r\n{contents}"
-        );
-
-        stream.write_all(response.as_bytes()).unwrap();
+    let (status_line, filename) = if request_line == "GET / HTTP/1.1" {
+        ("HTTP/1.1 200 OK\r\n", "hello.html")
     } else {
-        let status_line = "HTTP/1.1 404 NOT FOUND\r\n";
-        let contents = 
-            fs::read_to_string("404.html").unwrap();
-        let length = contents.len();
+        ("HTTP/1.1 404 NOT FOUND\r\n", "404.html")
+    };
 
-        let response = format!(
-            "{status_line}Content-Length: {length}\r\n\r\n{contents}"
-        );
+    let contents = 
+        fs::read_to_string(filename).unwrap();
+    let length = contents.len();
 
-        stream.write_all(response.as_bytes()).unwrap();
-    }
-    
-    
-    // stream.write_all(response).unwrap(); 
-    // directly receiv bytes
+    let response = format!(
+        "{status_line}Content-Length: {length}\r\n\r\n{contents}"
+    );
+
+    stream.write_all(response.as_bytes()).unwrap();
 }
 
 
