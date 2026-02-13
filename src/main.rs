@@ -19,23 +19,28 @@ fn handle_connection(
     mut stream: TcpStream
 ) {
     let buf_reader = BufReader::new(&stream);
-    let http_request: Vec<_> = buf_reader
+    let request_line = buf_reader
         .lines()
-        .map(|res| res.unwrap())
-        .take_while(|line| !line.is_empty())
-        .collect();
+        .next()
+        .unwrap()
+        .unwrap();
+    
+    if request_line == "GET / HTTP/1.1" {
+        let status_line = "HTTP/1.1 200 OK\r\n";
+        let contents = 
+            fs::read_to_string("hello.html").unwrap();
+        let length = contents.len();
 
-    let status_line = "HTTP/1.1 200 OK\r\n";
-    let contents = 
-        fs::read_to_string("hello.html").unwrap();
-    let length = contents.len();
-    // let response = b"HTTP/1.1 200 OK\r\n\r\n"; 
+        let response = format!(
+            "{status_line}Content-Length: {length}\r\n\r\n{contents}"
+        );
 
-    let response = format!(
-        "{status_line}Content-Length: {length}\r\n\r\n{contents}"
-    );
-
-    stream.write_all(response.as_bytes()).unwrap();
+        stream.write_all(response.as_bytes()).unwrap();
+    } else {
+        // some other request or whatever
+    }
+    
+    
     // stream.write_all(response).unwrap(); 
     // directly receiv bytes
 }
