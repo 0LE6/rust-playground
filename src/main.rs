@@ -2,10 +2,14 @@ use std::{
     fs, io::{BufRead, BufReader, Write}, net::{TcpListener, TcpStream}, thread, time::Duration
 };
 
+use rust_playground::ThreadPool;
+
 fn main() {
     let listener = TcpListener::bind(
         "127.0.0.1:6969"
     ).unwrap();
+
+    let pool = ThreadPool::new(4);
 
     for stream in listener.incoming() {
         let stream = stream.unwrap();
