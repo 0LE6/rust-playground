@@ -1,8 +1,11 @@
-use std::{error::Error, fmt::Display, thread::{self, JoinHandle}};
+use std::{error::Error, fmt::Display, sync::mpsc::{self, Sender}, thread::{self, JoinHandle}};
 
 pub struct ThreadPool {
     workers: Vec<Worker>,
+    sender: Sender<Job>,
 }
+
+struct Job;
 
 struct Worker {
     id: usize,
@@ -11,7 +14,7 @@ struct Worker {
 
 impl Worker {
     fn new(id: usize) -> Worker {
-        let thread = thread:: spawn(|| {});
+        let thread = thread::spawn(|| {});
 
         Worker { id, thread }
     }
@@ -39,12 +42,14 @@ impl ThreadPool {
     pub fn new(size: usize) -> ThreadPool {
         assert!(size > 0);
 
+        let (sender, receiver) = mpsc::channel();
+
         let mut workers = Vec::with_capacity(size);
 
         for id in 0..size {
             workers.push(Worker::new(id));
         }
-        ThreadPool { workers }
+        ThreadPool { workers, sender }
     }    
 
     /// Builds a new `ThreadPool` or return a `PoolCreationError`
@@ -52,13 +57,15 @@ impl ThreadPool {
     /// The size represents the number of threads in the pool
     pub fn build(size: usize) -> Result<ThreadPool, PoolCreationError> {
         if size > 0 {
+            let (sender, receiver) = mpsc::channel();
+
             let mut workers = Vec::with_capacity(size);
 
             for id in 0..size {
                 workers.push(Worker::new(id));    
             }
 
-            Ok(ThreadPool { workers })
+            Ok(ThreadPool { workers, sender })
         } else {
             Err(PoolCreationError)
         }

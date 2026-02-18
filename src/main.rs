@@ -10,8 +10,8 @@ fn main() {
         "127.0.0.1:6969"
     ).unwrap();
 
-    // let pool = ThreadPool::new(4);
-    let pool = ThreadPool::build(4);
+    let pool = ThreadPool::new(4);
+    // let pool = ThreadPool::build(4);
 
     for stream in listener.incoming() {
         let stream = stream.unwrap();
