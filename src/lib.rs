@@ -1,6 +1,8 @@
-use std::{error::Error, fmt::Display};
+use std::{error::Error, fmt::Display, thread::JoinHandle};
 
-pub struct ThreadPool;
+pub struct ThreadPool {
+    threads: Vec<JoinHandle<()>>,
+}
 
 #[derive(Debug, Clone)]
 pub struct PoolCreationError;
@@ -21,14 +23,26 @@ impl ThreadPool {
     /// # Panics
     ///
     /// The `new` function will panic if the size is zero.
-    // pub fn new(size: usize) -> ThreadPool {
-    //     assert!(size > 0);
-    //
-    //     ThreadPool
-    // }    
+    pub fn new(size: usize) -> ThreadPool {
+        assert!(size > 0);
+
+        let mut threads = Vec::with_capacity(size);
+
+        for _ in 0..size {
+            // create some threads
+        }
+        ThreadPool { threads }
+    }    
+
+    /// Builds a new `ThreadPool` or return a `PoolCreationError`
+    /// 
+    /// The size represents the number of threads in the pool
     pub fn build(size: usize) -> Result<ThreadPool, PoolCreationError> {
         if size > 0 {
-            Ok(ThreadPool)
+            let mut threads = Vec::with_capacity(size);
+
+            // TODO: finish
+            Ok(ThreadPool { threads })
         } else {
             Err(PoolCreationError)
         }
