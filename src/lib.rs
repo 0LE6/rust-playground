@@ -1,7 +1,20 @@
-use std::{error::Error, fmt::Display, thread::JoinHandle};
+use std::{error::Error, fmt::Display, thread::{self, JoinHandle}};
 
 pub struct ThreadPool {
-    threads: Vec<JoinHandle<()>>,
+    workers: Vec<Worker>,
+}
+
+struct Worker {
+    id: usize,
+    thread: JoinHandle<()>,
+}
+
+impl Worker {
+    fn new(id: usize) -> Worker {
+        let thread = thread:: spawn(|| {});
+
+        Worker { id, thread }
+    }
 }
 
 #[derive(Debug, Clone)]
