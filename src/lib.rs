@@ -39,12 +39,12 @@ impl ThreadPool {
     pub fn new(size: usize) -> ThreadPool {
         assert!(size > 0);
 
-        let mut threads = Vec::with_capacity(size);
+        let mut workers = Vec::with_capacity(size);
 
-        for _ in 0..size {
-            // create some threads
+        for id in 0..size {
+            workers.push(Worker::new(id));
         }
-        ThreadPool { threads }
+        ThreadPool { workers }
     }    
 
     /// Builds a new `ThreadPool` or return a `PoolCreationError`
@@ -52,10 +52,13 @@ impl ThreadPool {
     /// The size represents the number of threads in the pool
     pub fn build(size: usize) -> Result<ThreadPool, PoolCreationError> {
         if size > 0 {
-            let mut threads = Vec::with_capacity(size);
+            let mut workers = Vec::with_capacity(size);
 
-            // TODO: finish
-            Ok(ThreadPool { threads })
+            for id in 0..size {
+                workers.push(Worker::new(id));    
+            }
+
+            Ok(ThreadPool { workers })
         } else {
             Err(PoolCreationError)
         }
