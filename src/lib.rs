@@ -1,4 +1,9 @@
-use std::{error::Error, fmt::Display, sync::mpsc::{self, Sender}, thread::{self, JoinHandle}};
+use std::{
+    error::Error, 
+    fmt::Display, 
+    sync::mpsc::{self, Receiver, Sender}, 
+    thread::{self, JoinHandle}
+};
 
 pub struct ThreadPool {
     workers: Vec<Worker>,
@@ -13,23 +18,14 @@ struct Worker {
 }
 
 impl Worker {
-    fn new(id: usize) -> Worker {
-        let thread = thread::spawn(|| {});
+    fn new(id: usize, receiver: Receiver<Job>) -> Worker {
+        let thread = thread::spawn(|| {
+            receiver;
+        });
 
         Worker { id, thread }
     }
 }
-
-#[derive(Debug, Clone)]
-pub struct PoolCreationError;
-
-impl Display for PoolCreationError {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(f, "Error creating a Pool.")
-    }
-}
-
-impl Error for PoolCreationError {}
 
 impl ThreadPool {
     /// Create a new ThreadPool.
@@ -47,7 +43,7 @@ impl ThreadPool {
         let mut workers = Vec::with_capacity(size);
 
         for id in 0..size {
-            workers.push(Worker::new(id));
+            workers.push(Worker::new(id, receiver));
         }
         ThreadPool { workers, sender }
     }    
@@ -78,17 +74,16 @@ impl ThreadPool {
     }
 }
 
+#[derive(Debug, Clone)]
+pub struct PoolCreationError;
 
+impl Display for PoolCreationError {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        write!(f, "Error creating a Pool.")
+    }
+}
 
-
-
-
-
-
-
-
-
-
+impl Error for PoolCreationError {}
 
 
 
