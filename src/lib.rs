@@ -1,7 +1,7 @@
 use std::{
     error::Error, 
     fmt::Display, 
-    sync::mpsc::{self, Receiver, Sender}, 
+    sync::{Arc, Mutex, mpsc::{self, Receiver, Sender}}, 
     thread::{self, JoinHandle}
 };
 
@@ -18,7 +18,7 @@ struct Worker {
 }
 
 impl Worker {
-    fn new(id: usize, receiver: Receiver<Job>) -> Worker {
+    fn new(id: usize, receiver: Arc<Mutex<Receiver<Job>>>) -> Worker {
         let thread = thread::spawn(|| {
             receiver;
         });
@@ -35,15 +35,26 @@ impl ThreadPool {
     /// # Panics
     ///
     /// The `new` function will panic if the size is zero.
+    /// 
+    /// NOTE
+    /// To share ownership across multiple threads 
+    /// and allow the threads to mutate the value, 
+    /// we need to use Arc<Mutex<T>>. 
+    /// 
+    /// The Arc type will let multiple Worker instances 
+    /// own the receiver, and Mutex will ensure that only 
+    /// one Worker gets a job from the receiver at a time.
     pub fn new(size: usize) -> ThreadPool {
         assert!(size > 0);
 
         let (sender, receiver) = mpsc::channel();
 
+        let receiver = Arc::new(Mutex::new(receiver));
+
         let mut workers = Vec::with_capacity(size);
 
         for id in 0..size {
-            workers.push(Worker::new(id, receiver));
+            workers.push(Worker::new(id, Arc::clone(&receiver)));
         }
         ThreadPool { workers, sender }
     }    
@@ -55,10 +66,12 @@ impl ThreadPool {
         if size > 0 {
             let (sender, receiver) = mpsc::channel();
 
+            let receiver = Arc::new(Mutex::new(receiver));
+
             let mut workers = Vec::with_capacity(size);
 
             for id in 0..size {
-                workers.push(Worker::new(id));    
+                workers.push(Worker::new(id, Arc::clone(&receiver)));    
             }
 
             Ok(ThreadPool { workers, sender })
