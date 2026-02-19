@@ -7,7 +7,7 @@ use std::{
 
 pub struct ThreadPool {
     workers: Vec<Worker>,
-    sender: Sender<Job>,
+    sender: Option<Sender<Job>>,
 }
 
 type Job = Box<dyn FnOnce() + Send + 'static>;
@@ -62,7 +62,10 @@ impl ThreadPool {
         for id in 0..size {
             workers.push(Worker::new(id, Arc::clone(&receiver)));
         }
-        ThreadPool { workers, sender }
+        ThreadPool {
+            workers, 
+            sender: Some(sender),
+        }
     }    
 
     /// Builds a new `ThreadPool` or return a `PoolCreationError`
@@ -80,7 +83,10 @@ impl ThreadPool {
                 workers.push(Worker::new(id, Arc::clone(&receiver)));    
             }
 
-            Ok(ThreadPool { workers, sender })
+            Ok(ThreadPool { 
+                workers, 
+                sender: Some(sender),
+            })
         } else {
             Err(PoolCreationError)
         }
@@ -92,12 +98,14 @@ impl ThreadPool {
     {
         let job = Box::new(f);
 
-        self.sender.send(job).unwrap();
+        self.sender.as_ref().unwrap().send(job).unwrap();
     }
 }
 
 impl Drop for ThreadPool {
     fn drop(&mut self) {
+        drop(self.sender.take());
+
         for worker in &mut self.workers.drain(..)  {
             println!("Shutting down worker {}", worker.id);
 
