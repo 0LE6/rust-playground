@@ -3,15 +3,15 @@ use std::{
     net::{TcpListener, TcpStream}, thread, time::Duration
 };
 
-use rust_playground::ThreadPool;
+use rust_playground::{PoolCreationError, ThreadPool};
 
-fn main() {
+fn main() -> Result<(), PoolCreationError> {
     let listener = TcpListener::bind(
         "127.0.0.1:6969"
     ).unwrap();
 
-    let pool = ThreadPool::new(4);
-    // let pool = ThreadPool::build(4);
+    // let pool = ThreadPool::new(4);
+    let pool = ThreadPool::build(4)?;
 
     for stream in listener.incoming() {
         let stream = stream.unwrap();
@@ -20,6 +20,7 @@ fn main() {
            handle_connection(stream);
         });
     }
+    Ok(())
 }
 
 fn handle_connection(
