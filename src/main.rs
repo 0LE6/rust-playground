@@ -13,13 +13,16 @@ fn main() -> Result<(), PoolCreationError> {
     // let pool = ThreadPool::new(4);
     let pool = ThreadPool::build(4)?;
 
-    for stream in listener.incoming() {
+    for stream in listener.incoming().take(2) {
         let stream = stream.unwrap();
         
         pool.execute(|| {
            handle_connection(stream);
         });
     }
+
+    println!("Shutting donw!");
+
     Ok(())
 }
 
